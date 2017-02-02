@@ -1,0 +1,1399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-map xmlns="http://cayenne.apache.org/schema/3.0/modelMap"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://cayenne.apache.org/schema/3.0/modelMap http://cayenne.apache.org/schema/3.0/modelMap.xsd"
+	 project-version="6">
+	<property name="defaultPackage" value="be.labo.data"/>
+	<property name="defaultSchema" value="labodata"/>
+	<db-entity name="alert" schema="labodata">
+		<db-attribute name="closinguser" type="INTEGER"/>
+		<db-attribute name="event" type="INTEGER"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="alertmessage" schema="labodata">
+		<db-attribute name="alert" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="groupofusers" type="INTEGER"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="received" type="TIMESTAMP"/>
+		<db-attribute name="sent" type="TIMESTAMP"/>
+		<db-attribute name="user" type="INTEGER"/>
+		<db-attribute name="via" type="TINYINT"/>
+	</db-entity>
+	<db-entity name="assertion" schema="labodata">
+		<db-attribute name="asserted" type="TINYINT"/>
+		<db-attribute name="categorymask" type="INTEGER"/>
+		<db-attribute name="datatype" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="event" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="assertionplace" schema="labodata">
+		<db-attribute name="assertion" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="place" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="since" type="TIMESTAMP"/>
+		<db-attribute name="upto" type="TIMESTAMP"/>
+	</db-entity>
+	<db-entity name="audit" schema="labodata">
+		<db-attribute name="id" type="BIGINT" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="via" type="TINYINT"/>
+		<db-attribute name="whenchanged" type="TIMESTAMP" isMandatory="true"/>
+		<db-attribute name="whochanged" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="whychanged" type="VARCHAR" length="99"/>
+	</db-entity>
+	<db-entity name="auditalert" schema="labodata">
+		<db-attribute name="audit" type="BIGINT" isMandatory="true"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="whatchanged" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="auditevent" schema="labodata">
+		<db-attribute name="audit" type="BIGINT" isMandatory="true"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="whatchanged" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="auditgraph" schema="labodata">
+		<db-attribute name="audit" type="BIGINT" isMandatory="true"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="whatchanged" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="auditgroup" schema="labodata">
+		<db-attribute name="audit" type="BIGINT" isMandatory="true"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="whatchanged" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="auditmachine" schema="labodata">
+		<db-attribute name="audit" type="BIGINT" isMandatory="true"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="whatchanged" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="auditmeasure" schema="labodata">
+		<db-attribute name="audit" type="BIGINT" isMandatory="true"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="whatchanged" type="BIGINT" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="auditnetwork" schema="labodata">
+		<db-attribute name="audit" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="whatchanged" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="auditscaling" schema="labodata">
+		<db-attribute name="audit" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="whatchanged" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="audittype" schema="labodata">
+		<db-attribute name="audit" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="whatchanged" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="audituser" schema="labodata">
+		<db-attribute name="audit" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="whatchanged" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="category" schema="labodata">
+		<db-attribute name="color" type="SMALLINT"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="datatype" schema="labodata">
+		<db-attribute name="active" type="BOOLEAN"/>
+		<db-attribute name="color0" type="INTEGER"/>
+		<db-attribute name="color1" type="INTEGER"/>
+		<db-attribute name="color2" type="INTEGER"/>
+		<db-attribute name="color3" type="INTEGER"/>
+		<db-attribute name="color4" type="INTEGER"/>
+		<db-attribute name="color5" type="INTEGER"/>
+		<db-attribute name="color6" type="INTEGER"/>
+		<db-attribute name="color7" type="INTEGER"/>
+		<db-attribute name="color8" type="INTEGER"/>
+		<db-attribute name="color9" type="INTEGER"/>
+		<db-attribute name="decimals" type="TINYINT"/>
+		<db-attribute name="defaulttimespan" type="INTEGER"/>
+		<db-attribute name="description" type="VARCHAR" length="127"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="inheader" type="TINYINT"/>
+		<db-attribute name="isaletter" type="CHAR" length="1"/>
+		<db-attribute name="max" type="DOUBLE"/>
+		<db-attribute name="min" type="DOUBLE"/>
+		<db-attribute name="min1" type="DOUBLE"/>
+		<db-attribute name="min2" type="DOUBLE"/>
+		<db-attribute name="min3" type="DOUBLE"/>
+		<db-attribute name="min4" type="DOUBLE"/>
+		<db-attribute name="min5" type="DOUBLE"/>
+		<db-attribute name="min6" type="DOUBLE"/>
+		<db-attribute name="min7" type="DOUBLE"/>
+		<db-attribute name="min8" type="DOUBLE"/>
+		<db-attribute name="min9" type="DOUBLE"/>
+		<db-attribute name="nbcategories" type="TINYINT"/>
+		<db-attribute name="presentation" type="TINYINT"/>
+		<db-attribute name="symbol" type="TINYINT"/>
+		<db-attribute name="unit" type="VARCHAR" length="20"/>
+	</db-entity>
+	<db-entity name="devicetype" schema="labodata">
+		<db-attribute name="description" type="VARCHAR" length="127"/>
+		<db-attribute name="devicetype" type="TINYINT"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="event" schema="labodata">
+		<db-attribute name="active" type="BOOLEAN"/>
+		<db-attribute name="groupofusers" type="INTEGER"/>
+		<db-attribute name="hysteresis" type="SMALLINT"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="priority" type="TINYINT"/>
+		<db-attribute name="since" type="TIMESTAMP"/>
+		<db-attribute name="upto" type="TIMESTAMP"/>
+	</db-entity>
+	<db-entity name="graphconfig" schema="labodata">
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="individualplace" type="BOOLEAN"/>
+		<db-attribute name="individualtype" type="BOOLEAN"/>
+	</db-entity>
+	<db-entity name="graphplace" schema="labodata">
+		<db-attribute name="graphconfig" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="place" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="graphtype" schema="labodata">
+		<db-attribute name="datatype" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="graphconfig" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="groupofusers" schema="labodata">
+		<db-attribute name="active" type="BOOLEAN"/>
+		<db-attribute name="email" type="VARCHAR" length="255"/>
+		<db-attribute name="graphconfig" type="INTEGER"/>
+		<db-attribute name="gsm" type="VARCHAR" length="23"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="imagemap" schema="labodata">
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="xmax" type="DOUBLE"/>
+		<db-attribute name="ymax" type="DOUBLE"/>
+	</db-entity>
+	<db-entity name="imagetype" schema="labodata">
+		<db-attribute name="datatype" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="imagemap" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="machine" schema="labodata">
+		<db-attribute name="active" type="BOOLEAN"/>
+		<db-attribute name="description" type="VARCHAR" length="127"/>
+		<db-attribute name="devicetype" type="INTEGER"/>
+		<db-attribute name="gsm" type="VARCHAR" length="15"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="machinemac" type="INTEGER"/>
+		<db-attribute name="network" type="INTEGER"/>
+		<db-attribute name="networkrank" type="SMALLINT"/>
+		<db-attribute name="nodeid" type="VARCHAR" length="20"/>
+		<db-attribute name="place" type="INTEGER"/>
+		<db-attribute name="rawtable" type="INTEGER"/>
+		<db-attribute name="timeslot" type="SMALLINT"/>
+	</db-entity>
+	<db-entity name="measure" schema="labodata">
+		<db-attribute name="category" type="TINYINT"/>
+		<db-attribute name="datatype" type="INTEGER"/>
+		<db-attribute name="id" type="BIGINT" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="machine" type="INTEGER"/>
+		<db-attribute name="place" type="INTEGER"/>
+		<db-attribute name="rawrecord" type="BIGINT"/>
+		<db-attribute name="rawtablefield" type="INTEGER"/>
+		<db-attribute name="value" type="DOUBLE"/>
+		<db-attribute name="whenmeasured" type="TIMESTAMP"/>
+	</db-entity>
+	<db-entity name="metaclass" schema="labodata">
+		<db-attribute name="domain" type="VARCHAR" length="63"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="inmenu" type="BOOLEAN"/>
+		<db-attribute name="javaname" type="VARCHAR" length="63"/>
+		<db-attribute name="section" type="VARCHAR" length="63"/>
+	</db-entity>
+	<db-entity name="namecategory" schema="labodata">
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="language" type="CHAR" length="2"/>
+		<db-attribute name="name" type="VARCHAR" length="99"/>
+		<db-attribute name="owner" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="since" type="TIMESTAMP"/>
+	</db-entity>
+	<db-entity name="nameevent" schema="labodata">
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="language" type="CHAR" length="2"/>
+		<db-attribute name="name" type="VARCHAR" length="99"/>
+		<db-attribute name="owner" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="since" type="TIMESTAMP"/>
+	</db-entity>
+	<db-entity name="namegraph" schema="labodata">
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="language" type="CHAR" length="2"/>
+		<db-attribute name="name" type="VARCHAR" length="99"/>
+		<db-attribute name="owner" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="since" type="TIMESTAMP"/>
+	</db-entity>
+	<db-entity name="namegroup" schema="labodata">
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="language" type="CHAR" length="2"/>
+		<db-attribute name="name" type="VARCHAR" length="99"/>
+		<db-attribute name="owner" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="since" type="TIMESTAMP"/>
+	</db-entity>
+	<db-entity name="nameimage" schema="labodata">
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="language" type="CHAR" length="2"/>
+		<db-attribute name="name" type="VARCHAR" length="99"/>
+		<db-attribute name="owner" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="since" type="TIMESTAMP"/>
+	</db-entity>
+	<db-entity name="namemachine" schema="labodata">
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="language" type="CHAR" length="2"/>
+		<db-attribute name="name" type="VARCHAR" length="99"/>
+		<db-attribute name="owner" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="since" type="TIMESTAMP"/>
+	</db-entity>
+	<db-entity name="namemeasure" schema="labodata">
+		<db-attribute name="id" type="BIGINT" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="language" type="CHAR" length="2"/>
+		<db-attribute name="name" type="VARCHAR" length="99"/>
+		<db-attribute name="owner" type="BIGINT" isMandatory="true"/>
+		<db-attribute name="since" type="TIMESTAMP"/>
+	</db-entity>
+	<db-entity name="namenetwork" schema="labodata">
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="language" type="CHAR" length="2"/>
+		<db-attribute name="name" type="VARCHAR" length="99"/>
+		<db-attribute name="owner" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="since" type="TIMESTAMP"/>
+	</db-entity>
+	<db-entity name="nameplace" schema="labodata">
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="language" type="CHAR" length="2"/>
+		<db-attribute name="name" type="VARCHAR" length="99"/>
+		<db-attribute name="owner" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="since" type="TIMESTAMP"/>
+	</db-entity>
+	<db-entity name="nametype" schema="labodata">
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="language" type="CHAR" length="2"/>
+		<db-attribute name="name" type="VARCHAR" length="99"/>
+		<db-attribute name="owner" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="since" type="TIMESTAMP"/>
+	</db-entity>
+	<db-entity name="network" schema="labodata">
+		<db-attribute name="basetempo" type="TINYINT"/>
+		<db-attribute name="beatgsm" type="SMALLINT"/>
+		<db-attribute name="beatmeasure" type="SMALLINT"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="sleeptime" type="INTEGER"/>
+		<db-attribute name="timeslice" type="SMALLINT"/>
+		<db-attribute name="warmup" type="SMALLINT"/>
+	</db-entity>
+	<db-entity name="permission" schema="labodata">
+		<db-attribute name="groupofusers" type="INTEGER"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="maycreate" type="BOOLEAN"/>
+		<db-attribute name="maydelete" type="BOOLEAN"/>
+		<db-attribute name="mayread" type="BOOLEAN"/>
+		<db-attribute name="mayupdate" type="BOOLEAN"/>
+		<db-attribute name="metaclass" type="INTEGER"/>
+		<db-attribute name="singleobject" type="INTEGER"/>
+		<db-attribute name="singleread" type="BOOLEAN"/>
+	</db-entity>
+	<db-entity name="place" schema="labodata">
+		<db-attribute name="color" type="SMALLINT"/>
+		<db-attribute name="elevation" type="DOUBLE"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="latitude" type="DOUBLE"/>
+		<db-attribute name="longitude" type="DOUBLE"/>
+		<db-attribute name="symbol" type="TINYINT"/>
+	</db-entity>
+	<db-entity name="placemap" schema="labodata">
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="map" type="INTEGER"/>
+		<db-attribute name="place" type="INTEGER"/>
+		<db-attribute name="xpos" type="DOUBLE"/>
+		<db-attribute name="ypos" type="DOUBLE"/>
+	</db-entity>
+	<db-entity name="rawdata17" schema="labodata">
+		<db-attribute name="aa_xbeeaddr" type="INTEGER"/>
+		<db-attribute name="ab_structid" type="TINYINT"/>
+		<db-attribute name="ac_timevalidity" type="TINYINT"/>
+		<db-attribute name="ad_cpumac" type="INTEGER"/>
+		<db-attribute name="ae_timestamp" type="TIMESTAMP"/>
+		<db-attribute name="af_slot" type="TINYINT"/>
+		<db-attribute name="ag_family" type="TINYINT"/>
+		<db-attribute name="ah_sentlan" type="BOOLEAN"/>
+		<db-attribute name="ai_sendingwan" type="BOOLEAN"/>
+		<db-attribute name="aj_relayedgo" type="BOOLEAN"/>
+		<db-attribute name="ak_relayedreturn" type="BOOLEAN"/>
+		<db-attribute name="ba_usbnotconnect" type="BOOLEAN"/>
+		<db-attribute name="bb_solarpanelok" type="BOOLEAN"/>
+		<db-attribute name="bc_powerfilterok" type="BOOLEAN"/>
+		<db-attribute name="bd_voltsbattok" type="BOOLEAN"/>
+		<db-attribute name="be_lipochargingok" type="BOOLEAN"/>
+		<db-attribute name="bf_lipocharging" type="BOOLEAN"/>
+		<db-attribute name="bg_xbeeon" type="BOOLEAN"/>
+		<db-attribute name="bh_xbeeassoc" type="BOOLEAN"/>
+		<db-attribute name="bi_gsmon" type="BOOLEAN"/>
+		<db-attribute name="bj_gsmlast_ok" type="BOOLEAN"/>
+		<db-attribute name="bk_gsmlastretries" type="TINYINT"/>
+		<db-attribute name="bl_xbeerssi" type="TINYINT"/>
+		<db-attribute name="bm_gsmrssi" type="TINYINT"/>
+		<db-attribute name="bn_gsmber" type="TINYINT"/>
+		<db-attribute name="bo_channel1ok" type="BOOLEAN"/>
+		<db-attribute name="bp_channel2ok" type="BOOLEAN"/>
+		<db-attribute name="bq_led1" type="BOOLEAN"/>
+		<db-attribute name="br_dooralwaysclosed" type="BOOLEAN"/>
+		<db-attribute name="bs_ledalwaysoff" type="BOOLEAN"/>
+		<db-attribute name="ca_waterlevel" type="INTEGER"/>
+		<db-attribute name="cb_temperature" type="SMALLINT"/>
+		<db-attribute name="cc_amp5v" type="SMALLINT"/>
+		<db-attribute name="cd_voltsbatt" type="SMALLINT"/>
+		<db-attribute name="ce_voltssol" type="SMALLINT"/>
+		<db-attribute name="id" type="BIGINT" isPrimaryKey="true" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="rawdatafields" schema="labodata">
+		<db-attribute name="datatype" type="INTEGER"/>
+		<db-attribute name="description" type="VARCHAR" length="127"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="inheader" type="TINYINT"/>
+		<db-attribute name="precision" type="TINYINT"/>
+	</db-entity>
+	<db-entity name="rawtablefield" schema="labodata">
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="rawdatafield" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="rawtable" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="rawtables" schema="labodata">
+		<db-attribute name="description" type="VARCHAR" length="127"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="rawtype" type="TINYINT"/>
+	</db-entity>
+	<db-entity name="scaling" schema="labodata">
+		<db-attribute name="description" type="VARCHAR" length="127"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="interpolation" type="TINYINT"/>
+		<db-attribute name="unit" type="VARCHAR" length="20"/>
+	</db-entity>
+	<db-entity name="scalingline" schema="labodata">
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="max" type="DOUBLE"/>
+		<db-attribute name="min" type="DOUBLE"/>
+		<db-attribute name="owner" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="rawmax" type="DOUBLE"/>
+		<db-attribute name="rawmin" type="DOUBLE"/>
+	</db-entity>
+	<db-entity name="scalingsubtype" schema="labodata">
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="scaling" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="since" type="TIMESTAMP"/>
+		<db-attribute name="subtype" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="subtype" schema="labodata">
+		<db-attribute name="active" type="BOOLEAN"/>
+		<db-attribute name="datatype" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="machine" type="INTEGER"/>
+		<db-attribute name="max" type="DOUBLE"/>
+		<db-attribute name="min" type="DOUBLE"/>
+		<db-attribute name="min1" type="DOUBLE"/>
+		<db-attribute name="min2" type="DOUBLE"/>
+		<db-attribute name="min3" type="DOUBLE"/>
+		<db-attribute name="min4" type="DOUBLE"/>
+		<db-attribute name="min5" type="DOUBLE"/>
+		<db-attribute name="min6" type="DOUBLE"/>
+		<db-attribute name="min7" type="DOUBLE"/>
+		<db-attribute name="min8" type="DOUBLE"/>
+		<db-attribute name="min9" type="DOUBLE"/>
+		<db-attribute name="place" type="INTEGER"/>
+		<db-attribute name="rawtabledatafield" type="INTEGER"/>
+	</db-entity>
+	<db-entity name="user" schema="labodata">
+		<db-attribute name="active" type="BOOLEAN"/>
+		<db-attribute name="admin" type="BOOLEAN"/>
+		<db-attribute name="dashboard" type="INTEGER"/>
+		<db-attribute name="email" type="VARCHAR" isMandatory="true" length="255"/>
+		<db-attribute name="gsm" type="VARCHAR" length="23"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="language" type="CHAR" length="2"/>
+		<db-attribute name="name" type="VARCHAR" length="100"/>
+		<db-attribute name="password" type="VARCHAR" length="32"/>
+		<db-attribute name="sleepbegin" type="TINYINT"/>
+		<db-attribute name="sleepend" type="TINYINT"/>
+	</db-entity>
+	<db-entity name="usergroup" schema="labodata">
+		<db-attribute name="audit" type="INTEGER"/>
+		<db-attribute name="groupofusers" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="since" type="TIMESTAMP"/>
+		<db-attribute name="upto" type="TIMESTAMP"/>
+		<db-attribute name="user" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<obj-entity name="Alert" className="be.labo.data.Alert" dbEntityName="alert">
+	</obj-entity>
+	<obj-entity name="AlertMessage" className="be.labo.data.AlertMessage" dbEntityName="alertmessage">
+		<obj-attribute name="received" type="java.util.Date" db-attribute-path="received"/>
+		<obj-attribute name="sent" type="java.util.Date" db-attribute-path="sent"/>
+		<obj-attribute name="via" type="java.lang.Byte" db-attribute-path="via"/>
+	</obj-entity>
+	<obj-entity name="Assertion" className="be.labo.data.Assertion" dbEntityName="assertion">
+		<obj-attribute name="asserted" type="java.lang.Byte" db-attribute-path="asserted"/>
+		<obj-attribute name="categorymask" type="java.lang.Integer" db-attribute-path="categorymask"/>
+	</obj-entity>
+	<obj-entity name="AssertionPlace" className="be.labo.data.AssertionPlace" dbEntityName="assertionplace">
+		<obj-attribute name="since" type="java.util.Date" db-attribute-path="since"/>
+		<obj-attribute name="upto" type="java.util.Date" db-attribute-path="upto"/>
+	</obj-entity>
+	<obj-entity name="Audit" className="be.labo.data.Audit" dbEntityName="audit">
+		<obj-attribute name="via" type="java.lang.Byte" db-attribute-path="via"/>
+		<obj-attribute name="whenchanged" type="java.util.Date" db-attribute-path="whenchanged"/>
+		<obj-attribute name="whychanged" type="java.lang.String" db-attribute-path="whychanged"/>
+	</obj-entity>
+	<obj-entity name="AuditAlert" className="be.labo.data.AuditAlert" dbEntityName="auditalert">
+	</obj-entity>
+	<obj-entity name="AuditEvent" className="be.labo.data.AuditEvent" dbEntityName="auditevent">
+	</obj-entity>
+	<obj-entity name="AuditGroup" className="be.labo.data.AuditGroup" dbEntityName="auditgroup">
+	</obj-entity>
+	<obj-entity name="AuditMachine" className="be.labo.data.AuditMachine" dbEntityName="auditmachine">
+	</obj-entity>
+	<obj-entity name="AuditMeasure" className="be.labo.data.AuditMeasure" dbEntityName="auditmeasure">
+	</obj-entity>
+	<obj-entity name="AuditNetwork" className="be.labo.data.AuditNetwork" dbEntityName="auditnetwork">
+	</obj-entity>
+	<obj-entity name="AuditScaling" className="be.labo.data.AuditScaling" dbEntityName="auditscaling">
+	</obj-entity>
+	<obj-entity name="AuditType" className="be.labo.data.AuditType" dbEntityName="audittype">
+	</obj-entity>
+	<obj-entity name="AuditUser" className="be.labo.data.AuditUser" dbEntityName="audituser">
+	</obj-entity>
+	<obj-entity name="Category" className="be.labo.data.Category" dbEntityName="category">
+		<obj-attribute name="color" type="short" db-attribute-path="color"/>
+	</obj-entity>
+	<obj-entity name="DataType" className="be.labo.data.DataType" dbEntityName="datatype">
+		<obj-attribute name="active" type="java.lang.Boolean" db-attribute-path="active"/>
+		<obj-attribute name="decimals" type="java.lang.Byte" db-attribute-path="decimals"/>
+		<obj-attribute name="defaulttimespan" type="java.lang.Integer" db-attribute-path="defaulttimespan"/>
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="description"/>
+		<obj-attribute name="inheader" type="java.lang.Byte" db-attribute-path="inheader"/>
+		<obj-attribute name="isaletter" type="java.lang.String" db-attribute-path="isaletter"/>
+		<obj-attribute name="max" type="java.lang.Double" db-attribute-path="max"/>
+		<obj-attribute name="min" type="java.lang.Double" db-attribute-path="min"/>
+		<obj-attribute name="min1" type="java.lang.Double" db-attribute-path="min1"/>
+		<obj-attribute name="min2" type="java.lang.Double" db-attribute-path="min2"/>
+		<obj-attribute name="min3" type="java.lang.Double" db-attribute-path="min3"/>
+		<obj-attribute name="min4" type="java.lang.Double" db-attribute-path="min4"/>
+		<obj-attribute name="min5" type="java.lang.Double" db-attribute-path="min5"/>
+		<obj-attribute name="min6" type="java.lang.Double" db-attribute-path="min6"/>
+		<obj-attribute name="min7" type="java.lang.Double" db-attribute-path="min7"/>
+		<obj-attribute name="min8" type="java.lang.Double" db-attribute-path="min8"/>
+		<obj-attribute name="min9" type="java.lang.Double" db-attribute-path="min9"/>
+		<obj-attribute name="nbcategories" type="java.lang.Byte" db-attribute-path="nbcategories"/>
+		<obj-attribute name="presentation" type="java.lang.Byte" db-attribute-path="presentation"/>
+		<obj-attribute name="symbol" type="java.lang.Byte" db-attribute-path="symbol"/>
+		<obj-attribute name="unit" type="java.lang.String" db-attribute-path="unit"/>
+	</obj-entity>
+	<obj-entity name="Devicetype" className="be.labo.data.Devicetype" dbEntityName="devicetype">
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="description"/>
+		<obj-attribute name="devicetype" type="java.lang.Short" db-attribute-path="devicetype"/>
+	</obj-entity>
+	<obj-entity name="Event" className="be.labo.data.Event" dbEntityName="event">
+		<obj-attribute name="active" type="java.lang.Boolean" db-attribute-path="active"/>
+		<obj-attribute name="hysteresis" type="java.lang.Short" db-attribute-path="hysteresis"/>
+		<obj-attribute name="priority" type="java.lang.Byte" db-attribute-path="priority"/>
+		<obj-attribute name="since" type="java.util.Date" db-attribute-path="since"/>
+		<obj-attribute name="upto" type="java.util.Date" db-attribute-path="upto"/>
+	</obj-entity>
+	<obj-entity name="GraphType" className="be.labo.data.GraphType" dbEntityName="graphtype">
+	</obj-entity>
+	<obj-entity name="Graphconfig" className="be.labo.data.Graphconfig" dbEntityName="graphconfig">
+		<obj-attribute name="individualplace" type="java.lang.Boolean" db-attribute-path="individualplace"/>
+		<obj-attribute name="individualtype" type="java.lang.Boolean" db-attribute-path="individualtype"/>
+	</obj-entity>
+	<obj-entity name="Graphplace" className="be.labo.data.Graphplace" dbEntityName="graphplace">
+	</obj-entity>
+	<obj-entity name="GroupOfUsers" className="be.labo.data.GroupOfUsers" dbEntityName="groupofusers">
+		<obj-attribute name="active" type="java.lang.Boolean" db-attribute-path="active"/>
+		<obj-attribute name="email" type="java.lang.String" db-attribute-path="email"/>
+		<obj-attribute name="gsm" type="java.lang.String" db-attribute-path="gsm"/>
+	</obj-entity>
+	<obj-entity name="Imagemap" className="be.labo.data.Imagemap" dbEntityName="imagemap">
+		<obj-attribute name="xmax" type="java.lang.Double" db-attribute-path="xmax"/>
+		<obj-attribute name="ymax" type="java.lang.Double" db-attribute-path="ymax"/>
+	</obj-entity>
+	<obj-entity name="Imagetype" className="be.labo.data.Imagetype" dbEntityName="imagetype">
+	</obj-entity>
+	<obj-entity name="Machine" className="be.labo.data.Machine" dbEntityName="machine">
+		<obj-attribute name="active" type="java.lang.Boolean" db-attribute-path="active"/>
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="description"/>
+		<obj-attribute name="gsm" type="java.lang.String" db-attribute-path="gsm"/>
+		<obj-attribute name="machinemac" type="java.lang.Integer" db-attribute-path="machinemac"/>
+		<obj-attribute name="networkrank" type="java.lang.Short" db-attribute-path="networkrank"/>
+		<obj-attribute name="nodeid" type="java.lang.String" db-attribute-path="nodeid"/>
+		<obj-attribute name="timeslot" type="java.lang.Short" db-attribute-path="timeslot"/>
+	</obj-entity>
+	<obj-entity name="Measure" className="be.labo.data.Measure" dbEntityName="measure">
+		<obj-attribute name="rawrecord" type="java.lang.Long" db-attribute-path="rawrecord"/>
+		<obj-attribute name="value" type="java.lang.Double" db-attribute-path="value"/>
+		<obj-attribute name="whenmeasured" type="java.util.Date" db-attribute-path="whenmeasured"/>
+	</obj-entity>
+	<obj-entity name="MetaClass" className="be.labo.data.MetaClass" dbEntityName="metaclass">
+		<obj-attribute name="domain" type="java.lang.String" db-attribute-path="domain"/>
+		<obj-attribute name="inMenu" type="java.lang.Boolean" db-attribute-path="inmenu"/>
+		<obj-attribute name="javaName" type="java.lang.String" db-attribute-path="javaname"/>
+		<obj-attribute name="section" type="java.lang.String" db-attribute-path="section"/>
+	</obj-entity>
+	<obj-entity name="NameCategory" superEntityName="Names" className="be.labo.data.NameCategory" dbEntityName="namecategory">
+	</obj-entity>
+	<obj-entity name="NameEvent" superEntityName="Names" className="be.labo.data.NameEvent" dbEntityName="nameevent">
+	</obj-entity>
+	<obj-entity name="NameGroup" superEntityName="Names" className="be.labo.data.NameGroup" dbEntityName="namegroup">
+		<attribute-override name="audit" db-attribute-path="audit"/>
+	</obj-entity>
+	<obj-entity name="NameImage" superEntityName="Names" className="be.labo.data.NameImage" dbEntityName="nameimage">
+	</obj-entity>
+	<obj-entity name="NameMachine" superEntityName="Names" className="be.labo.data.NameMachine" dbEntityName="namemachine">
+	</obj-entity>
+	<obj-entity name="NameMeasure" superEntityName="Names" className="be.labo.data.NameMeasure" dbEntityName="namemeasure">
+	</obj-entity>
+	<obj-entity name="NameNetwork" superEntityName="Names" className="be.labo.data.NameNetwork" dbEntityName="namenetwork">
+	</obj-entity>
+	<obj-entity name="NamePlace" superEntityName="Names" className="be.labo.data.NamePlace" dbEntityName="nameplace">
+	</obj-entity>
+	<obj-entity name="NameType" superEntityName="Names" className="be.labo.data.NameType" dbEntityName="nametype">
+	</obj-entity>
+	<obj-entity name="Names" abstract="true" className="be.labo.data.Names">
+		<obj-attribute name="language" type="java.lang.String" db-attribute-path="language"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+		<obj-attribute name="since" type="java.util.Date" db-attribute-path="since"/>
+	</obj-entity>
+	<obj-entity name="Network" className="be.labo.data.Network" dbEntityName="network">
+		<obj-attribute name="basetempo" type="java.lang.Byte" db-attribute-path="basetempo"/>
+		<obj-attribute name="beatgsm" type="java.lang.Short" db-attribute-path="beatgsm"/>
+		<obj-attribute name="beatmeasure" type="java.lang.Short" db-attribute-path="beatmeasure"/>
+		<obj-attribute name="sleeptime" type="java.lang.Integer" db-attribute-path="sleeptime"/>
+		<obj-attribute name="timeslice" type="java.lang.Short" db-attribute-path="timeslice"/>
+		<obj-attribute name="warmup" type="java.lang.Short" db-attribute-path="warmup"/>
+	</obj-entity>
+	<obj-entity name="Permission" className="be.labo.data.Permission" dbEntityName="permission">
+		<obj-attribute name="mayCreate" type="java.lang.Boolean" db-attribute-path="maycreate"/>
+		<obj-attribute name="mayDelete" type="java.lang.Boolean" db-attribute-path="maydelete"/>
+		<obj-attribute name="mayRead" type="java.lang.Boolean" db-attribute-path="mayread"/>
+		<obj-attribute name="mayUpdate" type="java.lang.Boolean" db-attribute-path="mayupdate"/>
+		<obj-attribute name="singleObject" type="java.lang.Integer" db-attribute-path="singleobject"/>
+		<obj-attribute name="singleRead" type="java.lang.Boolean" db-attribute-path="singleread"/>
+	</obj-entity>
+	<obj-entity name="Place" className="be.labo.data.Place" dbEntityName="place">
+		<obj-attribute name="color" type="java.lang.Byte" db-attribute-path="color"/>
+		<obj-attribute name="elevation" type="java.lang.Double" db-attribute-path="elevation"/>
+		<obj-attribute name="latitude" type="java.lang.Double" db-attribute-path="latitude"/>
+		<obj-attribute name="longitude" type="java.lang.Double" db-attribute-path="longitude"/>
+		<obj-attribute name="symbol" type="java.lang.Byte" db-attribute-path="symbol"/>
+	</obj-entity>
+	<obj-entity name="Placemap" className="be.labo.data.Placemap" dbEntityName="placemap">
+		<obj-attribute name="xpos" type="java.lang.Double" db-attribute-path="xpos"/>
+		<obj-attribute name="ypos" type="java.lang.Double" db-attribute-path="ypos"/>
+	</obj-entity>
+	<obj-entity name="RawDataFields" className="be.labo.data.RawDataFields" dbEntityName="rawdatafields">
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="description"/>
+		<obj-attribute name="inheader" type="java.lang.Byte" db-attribute-path="inheader"/>
+		<obj-attribute name="precision" type="java.lang.Byte" db-attribute-path="precision"/>
+	</obj-entity>
+	<obj-entity name="RawTableField" className="be.labo.data.RawTableField" dbEntityName="rawtablefield">
+	</obj-entity>
+	<obj-entity name="RawTables" className="be.labo.data.Rawtables" dbEntityName="rawtables">
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="description"/>
+		<obj-attribute name="rawtype" type="java.lang.Byte" db-attribute-path="rawtype"/>
+	</obj-entity>
+	<obj-entity name="Rawdata17" className="be.labo.data.Rawdata17" dbEntityName="rawdata17">
+		<obj-attribute name="amp5v" type="java.lang.Short" db-attribute-path="cc_amp5v"/>
+		<obj-attribute name="channel1ok" type="java.lang.Boolean" db-attribute-path="bo_channel1ok"/>
+		<obj-attribute name="channel2ok" type="java.lang.Boolean" db-attribute-path="bp_channel2ok"/>
+		<obj-attribute name="cpumac" type="java.lang.Integer" db-attribute-path="ad_cpumac"/>
+		<obj-attribute name="dooralwaysclosed" type="java.lang.Boolean" db-attribute-path="br_dooralwaysclosed"/>
+		<obj-attribute name="family" type="java.lang.Byte" db-attribute-path="ag_family"/>
+		<obj-attribute name="gsmber" type="java.lang.Byte" db-attribute-path="bn_gsmber"/>
+		<obj-attribute name="gsmlastOk" type="java.lang.Boolean" db-attribute-path="bj_gsmlast_ok"/>
+		<obj-attribute name="gsmlastretries" type="java.lang.Byte" db-attribute-path="bk_gsmlastretries"/>
+		<obj-attribute name="gsmon" type="java.lang.Boolean" db-attribute-path="bi_gsmon"/>
+		<obj-attribute name="gsmrssi" type="java.lang.Byte" db-attribute-path="bm_gsmrssi"/>
+		<obj-attribute name="led1" type="java.lang.Boolean" db-attribute-path="bq_led1"/>
+		<obj-attribute name="ledalwaysoff" type="java.lang.Boolean" db-attribute-path="bs_ledalwaysoff"/>
+		<obj-attribute name="lipocharging" type="java.lang.Boolean" db-attribute-path="bf_lipocharging"/>
+		<obj-attribute name="lipochargingok" type="java.lang.Boolean" db-attribute-path="be_lipochargingok"/>
+		<obj-attribute name="powerfilterok" type="java.lang.Boolean" db-attribute-path="bc_powerfilterok"/>
+		<obj-attribute name="relayedgo" type="java.lang.Boolean" db-attribute-path="aj_relayedgo"/>
+		<obj-attribute name="relayedreturn" type="java.lang.Boolean" db-attribute-path="ak_relayedreturn"/>
+		<obj-attribute name="sendingwan" type="java.lang.Boolean" db-attribute-path="ai_sendingwan"/>
+		<obj-attribute name="sentlan" type="java.lang.Boolean" db-attribute-path="ah_sentlan"/>
+		<obj-attribute name="slot" type="java.lang.Byte" db-attribute-path="af_slot"/>
+		<obj-attribute name="solarpanelok" type="java.lang.Boolean" db-attribute-path="bb_solarpanelok"/>
+		<obj-attribute name="structid" type="java.lang.Byte" db-attribute-path="ab_structid"/>
+		<obj-attribute name="temperature" type="java.lang.Short" db-attribute-path="cb_temperature"/>
+		<obj-attribute name="timestamp" type="java.util.Date" db-attribute-path="ae_timestamp"/>
+		<obj-attribute name="timevalidity" type="java.lang.Byte" db-attribute-path="ac_timevalidity"/>
+		<obj-attribute name="usbnotconnect" type="java.lang.Boolean" db-attribute-path="ba_usbnotconnect"/>
+		<obj-attribute name="voltsbatt" type="java.lang.Short" db-attribute-path="cd_voltsbatt"/>
+		<obj-attribute name="voltsbattok" type="java.lang.Boolean" db-attribute-path="bd_voltsbattok"/>
+		<obj-attribute name="voltssol" type="java.lang.Short" db-attribute-path="ce_voltssol"/>
+		<obj-attribute name="waterlevel" type="java.lang.Integer" db-attribute-path="ca_waterlevel"/>
+		<obj-attribute name="xbeeaddr" type="java.lang.Integer" db-attribute-path="aa_xbeeaddr"/>
+		<obj-attribute name="xbeeassoc" type="java.lang.Boolean" db-attribute-path="bh_xbeeassoc"/>
+		<obj-attribute name="xbeeon" type="java.lang.Boolean" db-attribute-path="bg_xbeeon"/>
+		<obj-attribute name="xbeerssi" type="java.lang.Byte" db-attribute-path="bl_xbeerssi"/>
+	</obj-entity>
+	<obj-entity name="Scaling" className="be.labo.data.Scaling" dbEntityName="scaling">
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="description"/>
+		<obj-attribute name="interpolation" type="java.lang.Byte" db-attribute-path="interpolation"/>
+		<obj-attribute name="unit" type="java.lang.String" db-attribute-path="unit"/>
+	</obj-entity>
+	<obj-entity name="ScalingLine" className="be.labo.data.ScalingLine" dbEntityName="scalingline">
+		<obj-attribute name="max" type="java.lang.Double" db-attribute-path="max"/>
+		<obj-attribute name="min" type="java.lang.Double" db-attribute-path="min"/>
+		<obj-attribute name="rawmax" type="java.lang.Double" db-attribute-path="rawmax"/>
+		<obj-attribute name="rawmin" type="java.lang.Double" db-attribute-path="rawmin"/>
+	</obj-entity>
+	<obj-entity name="ScalingSubType" className="be.labo.data.ScalingSubType" dbEntityName="scalingsubtype">
+		<obj-attribute name="since" type="java.util.Date" db-attribute-path="since"/>
+	</obj-entity>
+	<obj-entity name="SubType" className="be.labo.data.SubType" dbEntityName="subtype">
+		<obj-attribute name="active" type="java.lang.Boolean" db-attribute-path="active"/>
+		<obj-attribute name="max" type="java.lang.Double" db-attribute-path="max"/>
+		<obj-attribute name="min" type="java.lang.Double" db-attribute-path="min"/>
+		<obj-attribute name="min1" type="java.lang.Double" db-attribute-path="min1"/>
+		<obj-attribute name="min2" type="java.lang.Double" db-attribute-path="min2"/>
+		<obj-attribute name="min3" type="java.lang.Double" db-attribute-path="min3"/>
+		<obj-attribute name="min4" type="java.lang.Double" db-attribute-path="min4"/>
+		<obj-attribute name="min5" type="java.lang.Double" db-attribute-path="min5"/>
+		<obj-attribute name="min6" type="java.lang.Double" db-attribute-path="min6"/>
+		<obj-attribute name="min7" type="java.lang.Double" db-attribute-path="min7"/>
+		<obj-attribute name="min8" type="java.lang.Double" db-attribute-path="min8"/>
+		<obj-attribute name="min9" type="java.lang.Double" db-attribute-path="min9"/>
+	</obj-entity>
+	<obj-entity name="User" className="be.labo.data.User" dbEntityName="user">
+		<obj-attribute name="active" type="java.lang.Boolean" db-attribute-path="active"/>
+		<obj-attribute name="admin" type="java.lang.Short" db-attribute-path="admin"/>
+		<obj-attribute name="email" type="java.lang.String" db-attribute-path="email"/>
+		<obj-attribute name="gsm" type="java.lang.String" db-attribute-path="gsm"/>
+		<obj-attribute name="language" type="java.lang.String" db-attribute-path="language"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+		<obj-attribute name="password" type="java.lang.String" db-attribute-path="password"/>
+		<obj-attribute name="sleepbegin" type="java.lang.Byte" db-attribute-path="sleepbegin"/>
+		<obj-attribute name="sleepend" type="java.lang.Byte" db-attribute-path="sleepend"/>
+	</obj-entity>
+	<obj-entity name="UserGroup" className="be.labo.data.UserGroup" dbEntityName="usergroup">
+		<obj-attribute name="audit" type="java.lang.Integer" db-attribute-path="audit"/>
+		<obj-attribute name="since" type="java.util.Date" db-attribute-path="since"/>
+		<obj-attribute name="upto" type="java.util.Date" db-attribute-path="upto"/>
+	</obj-entity>
+	<db-relationship name="alertEvent" source="alert" target="event" toMany="false">
+		<db-attribute-pair source="event" target="id"/>
+	</db-relationship>
+	<db-relationship name="alertMessage" source="alert" target="alertmessage" toMany="true">
+		<db-attribute-pair source="id" target="alert"/>
+	</db-relationship>
+	<db-relationship name="alertaudit" source="alert" target="auditalert" toMany="true">
+		<db-attribute-pair source="id" target="whatchanged"/>
+	</db-relationship>
+	<db-relationship name="closer" source="alert" target="user" toMany="false">
+		<db-attribute-pair source="closinguser" target="id"/>
+	</db-relationship>
+	<db-relationship name="alertGroup" source="alertmessage" target="groupofusers" toMany="false">
+		<db-attribute-pair source="groupofusers" target="id"/>
+	</db-relationship>
+	<db-relationship name="alertUser" source="alertmessage" target="user" toMany="false">
+		<db-attribute-pair source="user" target="id"/>
+	</db-relationship>
+	<db-relationship name="messageAlert" source="alertmessage" target="alert" toMany="false">
+		<db-attribute-pair source="alert" target="id"/>
+	</db-relationship>
+	<db-relationship name="assertionEvent" source="assertion" target="event" toMany="false">
+		<db-attribute-pair source="event" target="id"/>
+	</db-relationship>
+	<db-relationship name="assertionPlace" source="assertion" target="assertionplace" toMany="true">
+		<db-attribute-pair source="id" target="assertion"/>
+	</db-relationship>
+	<db-relationship name="assertionType" source="assertion" target="datatype" toMany="false">
+		<db-attribute-pair source="datatype" target="id"/>
+	</db-relationship>
+	<db-relationship name="assertionPlace" source="assertionplace" target="place" toMany="false">
+		<db-attribute-pair source="place" target="id"/>
+	</db-relationship>
+	<db-relationship name="placeAssertion" source="assertionplace" target="assertion" toMany="false">
+		<db-attribute-pair source="assertion" target="id"/>
+	</db-relationship>
+	<db-relationship name="actor" source="audit" target="user" toMany="false">
+		<db-attribute-pair source="whochanged" target="id"/>
+	</db-relationship>
+	<db-relationship name="auditalert" source="audit" target="auditalert" toMany="true">
+		<db-attribute-pair source="id" target="audit"/>
+	</db-relationship>
+	<db-relationship name="auditevent" source="audit" target="auditevent" toMany="true">
+		<db-attribute-pair source="id" target="audit"/>
+	</db-relationship>
+	<db-relationship name="auditgraph" source="audit" target="auditgraph" toMany="true">
+		<db-attribute-pair source="id" target="audit"/>
+	</db-relationship>
+	<db-relationship name="auditgroup" source="audit" target="auditgroup" toMany="true">
+		<db-attribute-pair source="id" target="audit"/>
+	</db-relationship>
+	<db-relationship name="auditmachine" source="audit" target="auditmachine" toMany="true">
+		<db-attribute-pair source="id" target="audit"/>
+	</db-relationship>
+	<db-relationship name="auditmeasure" source="audit" target="auditmeasure" toMany="true">
+		<db-attribute-pair source="id" target="audit"/>
+	</db-relationship>
+	<db-relationship name="auditnetwork" source="audit" target="auditnetwork" toMany="true">
+		<db-attribute-pair source="id" target="audit"/>
+	</db-relationship>
+	<db-relationship name="auditscaling" source="audit" target="auditscaling" toMany="true">
+		<db-attribute-pair source="id" target="audit"/>
+	</db-relationship>
+	<db-relationship name="audittype" source="audit" target="audittype" toMany="true">
+		<db-attribute-pair source="id" target="audit"/>
+	</db-relationship>
+	<db-relationship name="audituser" source="audit" target="audituser" toMany="true">
+		<db-attribute-pair source="id" target="audit"/>
+	</db-relationship>
+	<db-relationship name="alertaudit" source="auditalert" target="audit" toMany="false">
+		<db-attribute-pair source="audit" target="id"/>
+	</db-relationship>
+	<db-relationship name="auditalert" source="auditalert" target="alert" toMany="false">
+		<db-attribute-pair source="whatchanged" target="id"/>
+	</db-relationship>
+	<db-relationship name="auditevent" source="auditevent" target="event" toMany="false">
+		<db-attribute-pair source="whatchanged" target="id"/>
+	</db-relationship>
+	<db-relationship name="eventaudit" source="auditevent" target="audit" toMany="false">
+		<db-attribute-pair source="audit" target="id"/>
+	</db-relationship>
+	<db-relationship name="auditGraph" source="auditgraph" target="graphconfig" toMany="false">
+		<db-attribute-pair source="whatchanged" target="id"/>
+	</db-relationship>
+	<db-relationship name="graphAudit" source="auditgraph" target="audit" toMany="false">
+		<db-attribute-pair source="audit" target="id"/>
+	</db-relationship>
+	<db-relationship name="auditgroup" source="auditgroup" target="groupofusers" toMany="false">
+		<db-attribute-pair source="whatchanged" target="id"/>
+	</db-relationship>
+	<db-relationship name="groupaudit" source="auditgroup" target="audit" toMany="false">
+		<db-attribute-pair source="audit" target="id"/>
+	</db-relationship>
+	<db-relationship name="auditMachine" source="auditmachine" target="machine" toMany="false">
+		<db-attribute-pair source="whatchanged" target="id"/>
+	</db-relationship>
+	<db-relationship name="machineaudit" source="auditmachine" target="audit" toMany="false">
+		<db-attribute-pair source="audit" target="id"/>
+	</db-relationship>
+	<db-relationship name="auditmeasure" source="auditmeasure" target="measure" toMany="false">
+		<db-attribute-pair source="whatchanged" target="id"/>
+	</db-relationship>
+	<db-relationship name="measureaudit" source="auditmeasure" target="audit" toMany="false">
+		<db-attribute-pair source="audit" target="id"/>
+	</db-relationship>
+	<db-relationship name="auditnetwork" source="auditnetwork" target="network" toMany="false">
+		<db-attribute-pair source="whatchanged" target="id"/>
+	</db-relationship>
+	<db-relationship name="networkaudit" source="auditnetwork" target="audit" toMany="false">
+		<db-attribute-pair source="audit" target="id"/>
+	</db-relationship>
+	<db-relationship name="auditScaling" source="auditscaling" target="scaling" toMany="false">
+		<db-attribute-pair source="whatchanged" target="id"/>
+	</db-relationship>
+	<db-relationship name="scalingaudit" source="auditscaling" target="audit" toMany="false">
+		<db-attribute-pair source="audit" target="id"/>
+	</db-relationship>
+	<db-relationship name="auditType" source="audittype" target="datatype" toMany="false">
+		<db-attribute-pair source="whatchanged" target="id"/>
+	</db-relationship>
+	<db-relationship name="typeaudit" source="audittype" target="audit" toMany="false">
+		<db-attribute-pair source="audit" target="id"/>
+	</db-relationship>
+	<db-relationship name="audituser" source="audituser" target="user" toMany="false">
+		<db-attribute-pair source="whatchanged" target="id"/>
+	</db-relationship>
+	<db-relationship name="useraudit" source="audituser" target="audit" toMany="false">
+		<db-attribute-pair source="audit" target="id"/>
+	</db-relationship>
+	<db-relationship name="categ0" source="category" target="datatype" toMany="true">
+		<db-attribute-pair source="id" target="color0"/>
+	</db-relationship>
+	<db-relationship name="categ1" source="category" target="datatype" toMany="true">
+		<db-attribute-pair source="id" target="color1"/>
+	</db-relationship>
+	<db-relationship name="categ2" source="category" target="datatype" toMany="true">
+		<db-attribute-pair source="id" target="color2"/>
+	</db-relationship>
+	<db-relationship name="categ3" source="category" target="datatype" toMany="true">
+		<db-attribute-pair source="id" target="color3"/>
+	</db-relationship>
+	<db-relationship name="categ4" source="category" target="datatype" toMany="true">
+		<db-attribute-pair source="id" target="color4"/>
+	</db-relationship>
+	<db-relationship name="categ5" source="category" target="datatype" toMany="true">
+		<db-attribute-pair source="id" target="color5"/>
+	</db-relationship>
+	<db-relationship name="categ6" source="category" target="datatype" toMany="true">
+		<db-attribute-pair source="id" target="color6"/>
+	</db-relationship>
+	<db-relationship name="categ7" source="category" target="datatype" toMany="true">
+		<db-attribute-pair source="id" target="color7"/>
+	</db-relationship>
+	<db-relationship name="categ8" source="category" target="datatype" toMany="true">
+		<db-attribute-pair source="id" target="color8"/>
+	</db-relationship>
+	<db-relationship name="categ9" source="category" target="datatype" toMany="true">
+		<db-attribute-pair source="id" target="color9"/>
+	</db-relationship>
+	<db-relationship name="categoryMeasure" source="category" target="measure" toMany="true">
+		<db-attribute-pair source="id" target="category"/>
+	</db-relationship>
+	<db-relationship name="categoryname" source="category" target="namecategory" toMany="true">
+		<db-attribute-pair source="id" target="owner"/>
+	</db-relationship>
+	<db-relationship name="categ0" source="datatype" target="category" toMany="false">
+		<db-attribute-pair source="color0" target="id"/>
+	</db-relationship>
+	<db-relationship name="categ1" source="datatype" target="category" toMany="false">
+		<db-attribute-pair source="color1" target="id"/>
+	</db-relationship>
+	<db-relationship name="categ2" source="datatype" target="category" toMany="false">
+		<db-attribute-pair source="color2" target="id"/>
+	</db-relationship>
+	<db-relationship name="categ3" source="datatype" target="category" toMany="false">
+		<db-attribute-pair source="color3" target="id"/>
+	</db-relationship>
+	<db-relationship name="categ4" source="datatype" target="category" toMany="false">
+		<db-attribute-pair source="color4" target="id"/>
+	</db-relationship>
+	<db-relationship name="categ5" source="datatype" target="category" toMany="false">
+		<db-attribute-pair source="color5" target="id"/>
+	</db-relationship>
+	<db-relationship name="categ6" source="datatype" target="category" toMany="false">
+		<db-attribute-pair source="color6" target="id"/>
+	</db-relationship>
+	<db-relationship name="categ7" source="datatype" target="category" toMany="false">
+		<db-attribute-pair source="color7" target="id"/>
+	</db-relationship>
+	<db-relationship name="categ8" source="datatype" target="category" toMany="false">
+		<db-attribute-pair source="color8" target="id"/>
+	</db-relationship>
+	<db-relationship name="categ9" source="datatype" target="category" toMany="false">
+		<db-attribute-pair source="color9" target="id"/>
+	</db-relationship>
+	<db-relationship name="dataTypeField" source="datatype" target="rawdatafields" toMany="true">
+		<db-attribute-pair source="id" target="datatype"/>
+	</db-relationship>
+	<db-relationship name="datatypeImage" source="datatype" target="imagetype" toMany="true">
+		<db-attribute-pair source="id" target="datatype"/>
+	</db-relationship>
+	<db-relationship name="subtype" source="datatype" target="subtype" toMany="true">
+		<db-attribute-pair source="id" target="datatype"/>
+	</db-relationship>
+	<db-relationship name="typeAssertion" source="datatype" target="assertion" toMany="true">
+		<db-attribute-pair source="id" target="datatype"/>
+	</db-relationship>
+	<db-relationship name="typeAudit" source="datatype" target="audittype" toMany="true">
+		<db-attribute-pair source="id" target="whatchanged"/>
+	</db-relationship>
+	<db-relationship name="typeGraph" source="datatype" target="graphtype" toMany="true">
+		<db-attribute-pair source="id" target="datatype"/>
+	</db-relationship>
+	<db-relationship name="typeMeasures" source="datatype" target="measure" toMany="true">
+		<db-attribute-pair source="id" target="datatype"/>
+	</db-relationship>
+	<db-relationship name="typeName" source="datatype" target="nametype" toMany="true">
+		<db-attribute-pair source="id" target="owner"/>
+	</db-relationship>
+	<db-relationship name="deviceTypeMachine" source="devicetype" target="machine" toMany="true">
+		<db-attribute-pair source="id" target="devicetype"/>
+	</db-relationship>
+	<db-relationship name="eventAlert" source="event" target="alert" toMany="true">
+		<db-attribute-pair source="id" target="event"/>
+	</db-relationship>
+	<db-relationship name="eventAssertion" source="event" target="assertion" toMany="true">
+		<db-attribute-pair source="id" target="event"/>
+	</db-relationship>
+	<db-relationship name="eventGroup" source="event" target="groupofusers" toMany="false">
+		<db-attribute-pair source="groupofusers" target="id"/>
+	</db-relationship>
+	<db-relationship name="eventName" source="event" target="nameevent" toMany="true">
+		<db-attribute-pair source="id" target="owner"/>
+	</db-relationship>
+	<db-relationship name="eventaudit" source="event" target="auditevent" toMany="true">
+		<db-attribute-pair source="id" target="whatchanged"/>
+	</db-relationship>
+	<db-relationship name="graphAudit" source="graphconfig" target="auditgraph" toMany="true">
+		<db-attribute-pair source="id" target="whatchanged"/>
+	</db-relationship>
+	<db-relationship name="graphName" source="graphconfig" target="namegraph" toMany="true">
+		<db-attribute-pair source="id" target="owner"/>
+	</db-relationship>
+	<db-relationship name="graphPlace" source="graphconfig" target="graphplace" toMany="true">
+		<db-attribute-pair source="id" target="graphconfig"/>
+	</db-relationship>
+	<db-relationship name="graphType" source="graphconfig" target="graphtype" toMany="true">
+		<db-attribute-pair source="id" target="graphconfig"/>
+	</db-relationship>
+	<db-relationship name="graphUser" source="graphconfig" target="user" toMany="true">
+		<db-attribute-pair source="id" target="dashboard"/>
+	</db-relationship>
+	<db-relationship name="graphgroup" source="graphconfig" target="groupofusers" toMany="true">
+		<db-attribute-pair source="id" target="graphconfig"/>
+	</db-relationship>
+	<db-relationship name="graphPlace" source="graphplace" target="place" toMany="false">
+		<db-attribute-pair source="place" target="id"/>
+	</db-relationship>
+	<db-relationship name="placeGraph" source="graphplace" target="graphconfig" toMany="false">
+		<db-attribute-pair source="graphconfig" target="id"/>
+	</db-relationship>
+	<db-relationship name="graphType" source="graphtype" target="datatype" toMany="false">
+		<db-attribute-pair source="datatype" target="id"/>
+	</db-relationship>
+	<db-relationship name="typeGraph" source="graphtype" target="graphconfig" toMany="false">
+		<db-attribute-pair source="graphconfig" target="id"/>
+	</db-relationship>
+	<db-relationship name="groupAlertMessage" source="groupofusers" target="alertmessage" toMany="true">
+		<db-attribute-pair source="id" target="groupofusers"/>
+	</db-relationship>
+	<db-relationship name="groupEvent" source="groupofusers" target="event" toMany="true">
+		<db-attribute-pair source="id" target="groupofusers"/>
+	</db-relationship>
+	<db-relationship name="groupPermission" source="groupofusers" target="permission" toMany="true">
+		<db-attribute-pair source="id" target="groupofusers"/>
+	</db-relationship>
+	<db-relationship name="groupaudit" source="groupofusers" target="auditgroup" toMany="true">
+		<db-attribute-pair source="id" target="whatchanged"/>
+	</db-relationship>
+	<db-relationship name="groupgraph" source="groupofusers" target="graphconfig" toMany="false">
+		<db-attribute-pair source="graphconfig" target="id"/>
+	</db-relationship>
+	<db-relationship name="groupname" source="groupofusers" target="namegroup" toMany="true">
+		<db-attribute-pair source="id" target="owner"/>
+	</db-relationship>
+	<db-relationship name="groupuser" source="groupofusers" target="usergroup" toMany="true">
+		<db-attribute-pair source="id" target="groupofusers"/>
+	</db-relationship>
+	<db-relationship name="imageType" source="imagemap" target="imagetype" toMany="true">
+		<db-attribute-pair source="id" target="imagemap"/>
+	</db-relationship>
+	<db-relationship name="imagename" source="imagemap" target="nameimage" toMany="true">
+		<db-attribute-pair source="id" target="owner"/>
+	</db-relationship>
+	<db-relationship name="mapplace" source="imagemap" target="placemap" toMany="true">
+		<db-attribute-pair source="id" target="map"/>
+	</db-relationship>
+	<db-relationship name="datatypeImage" source="imagetype" target="imagemap" toMany="false">
+		<db-attribute-pair source="imagemap" target="id"/>
+	</db-relationship>
+	<db-relationship name="imageType" source="imagetype" target="datatype" toMany="false">
+		<db-attribute-pair source="datatype" target="id"/>
+	</db-relationship>
+	<db-relationship name="machineAudit" source="machine" target="auditmachine" toMany="true">
+		<db-attribute-pair source="id" target="whatchanged"/>
+	</db-relationship>
+	<db-relationship name="machineDeviceType" source="machine" target="devicetype" toMany="false">
+		<db-attribute-pair source="devicetype" target="id"/>
+	</db-relationship>
+	<db-relationship name="machineGraph" source="machine" target="graphplace" toMany="true">
+		<db-attribute-pair source="id" target="place"/>
+	</db-relationship>
+	<db-relationship name="machineName" source="machine" target="namemachine" toMany="true">
+		<db-attribute-pair source="id" target="owner"/>
+	</db-relationship>
+	<db-relationship name="machineNetwork" source="machine" target="network" toMany="false">
+		<db-attribute-pair source="network" target="id"/>
+	</db-relationship>
+	<db-relationship name="machinePlace" source="machine" target="place" toMany="false">
+		<db-attribute-pair source="place" target="id"/>
+	</db-relationship>
+	<db-relationship name="machineRawTable" source="machine" target="rawtables" toMany="false">
+		<db-attribute-pair source="rawtable" target="id"/>
+	</db-relationship>
+	<db-relationship name="machineSubTypes" source="machine" target="subtype" toMany="true">
+		<db-attribute-pair source="id" target="machine"/>
+	</db-relationship>
+	<db-relationship name="measureAudit" source="measure" target="auditmeasure" toMany="true">
+		<db-attribute-pair source="id" target="whatchanged"/>
+	</db-relationship>
+	<db-relationship name="measureCategory" source="measure" target="category" toMany="false">
+		<db-attribute-pair source="category" target="id"/>
+	</db-relationship>
+	<db-relationship name="measureField" source="measure" target="rawtablefield" toMany="false">
+		<db-attribute-pair source="rawtablefield" target="id"/>
+	</db-relationship>
+	<db-relationship name="measureMachine" source="measure" target="machine" toMany="false">
+		<db-attribute-pair source="machine" target="id"/>
+	</db-relationship>
+	<db-relationship name="measureName" source="measure" target="namemeasure" toMany="true">
+		<db-attribute-pair source="id" target="owner"/>
+	</db-relationship>
+	<db-relationship name="measurePlace" source="measure" target="place" toMany="false">
+		<db-attribute-pair source="place" target="id"/>
+	</db-relationship>
+	<db-relationship name="measureType" source="measure" target="datatype" toMany="false">
+		<db-attribute-pair source="datatype" target="id"/>
+	</db-relationship>
+	<db-relationship name="metaPermission" source="metaclass" target="permission" toMany="true">
+		<db-attribute-pair source="id" target="metaclass"/>
+	</db-relationship>
+	<db-relationship name="namecategory" source="namecategory" target="category" toMany="false">
+		<db-attribute-pair source="owner" target="id"/>
+	</db-relationship>
+	<db-relationship name="nameEvent" source="nameevent" target="event" toMany="false">
+		<db-attribute-pair source="owner" target="id"/>
+	</db-relationship>
+	<db-relationship name="nameGraph" source="namegraph" target="graphconfig" toMany="true">
+		<db-attribute-pair source="owner" target="id"/>
+	</db-relationship>
+	<db-relationship name="namegroup" source="namegroup" target="groupofusers" toMany="false">
+		<db-attribute-pair source="owner" target="id"/>
+	</db-relationship>
+	<db-relationship name="nameImage" source="nameimage" target="imagemap" toMany="false">
+		<db-attribute-pair source="owner" target="id"/>
+	</db-relationship>
+	<db-relationship name="nameMachine" source="namemachine" target="machine" toMany="false">
+		<db-attribute-pair source="owner" target="id"/>
+	</db-relationship>
+	<db-relationship name="nameMeasure" source="namemeasure" target="measure" toMany="false">
+		<db-attribute-pair source="owner" target="id"/>
+	</db-relationship>
+	<db-relationship name="nameNetwork" source="namenetwork" target="network" toMany="false">
+		<db-attribute-pair source="owner" target="id"/>
+	</db-relationship>
+	<db-relationship name="namePlace" source="nameplace" target="place" toMany="false">
+		<db-attribute-pair source="owner" target="id"/>
+	</db-relationship>
+	<db-relationship name="nameType" source="nametype" target="datatype" toMany="false">
+		<db-attribute-pair source="owner" target="id"/>
+	</db-relationship>
+	<db-relationship name="networkMachine" source="network" target="machine" toMany="true">
+		<db-attribute-pair source="id" target="network"/>
+	</db-relationship>
+	<db-relationship name="networkName" source="network" target="namenetwork" toMany="true">
+		<db-attribute-pair source="id" target="owner"/>
+	</db-relationship>
+	<db-relationship name="networkaudit" source="network" target="auditnetwork" toMany="true">
+		<db-attribute-pair source="id" target="whatchanged"/>
+	</db-relationship>
+	<db-relationship name="permissionGroup" source="permission" target="groupofusers" toMany="false">
+		<db-attribute-pair source="groupofusers" target="id"/>
+	</db-relationship>
+	<db-relationship name="permissionMeta" source="permission" target="metaclass" toMany="false">
+		<db-attribute-pair source="metaclass" target="id"/>
+	</db-relationship>
+	<db-relationship name="placeAssertion" source="place" target="assertionplace" toMany="true">
+		<db-attribute-pair source="id" target="place"/>
+	</db-relationship>
+	<db-relationship name="placeGraph" source="place" target="graphplace" toMany="true">
+		<db-attribute-pair source="id" target="place"/>
+	</db-relationship>
+	<db-relationship name="placeMeasure" source="place" target="measure" toMany="true">
+		<db-attribute-pair source="id" target="place"/>
+	</db-relationship>
+	<db-relationship name="placemachine" source="place" target="machine" toMany="true">
+		<db-attribute-pair source="id" target="place"/>
+	</db-relationship>
+	<db-relationship name="placemap" source="place" target="placemap" toMany="true">
+		<db-attribute-pair source="id" target="place"/>
+	</db-relationship>
+	<db-relationship name="placename" source="place" target="nameplace" toMany="true">
+		<db-attribute-pair source="id" target="owner"/>
+	</db-relationship>
+	<db-relationship name="placesubtype" source="place" target="subtype" toMany="true">
+		<db-attribute-pair source="id" target="place"/>
+	</db-relationship>
+	<db-relationship name="mapplace" source="placemap" target="place" toMany="false">
+		<db-attribute-pair source="place" target="id"/>
+	</db-relationship>
+	<db-relationship name="placemap" source="placemap" target="imagemap" toMany="false">
+		<db-attribute-pair source="map" target="id"/>
+	</db-relationship>
+	<db-relationship name="fieldDataType" source="rawdatafields" target="datatype" toMany="false">
+		<db-attribute-pair source="datatype" target="id"/>
+	</db-relationship>
+	<db-relationship name="fieldTable" source="rawdatafields" target="rawtablefield" toMany="true">
+		<db-attribute-pair source="id" target="rawdatafield"/>
+	</db-relationship>
+	<db-relationship name="fieldMeasure" source="rawtablefield" target="measure" toMany="true">
+		<db-attribute-pair source="id" target="rawtablefield"/>
+	</db-relationship>
+	<db-relationship name="fieldSubtype" source="rawtablefield" target="subtype" toMany="true">
+		<db-attribute-pair source="id" target="rawtabledatafield"/>
+	</db-relationship>
+	<db-relationship name="fieldTable" source="rawtablefield" target="rawtables" toMany="false">
+		<db-attribute-pair source="rawtable" target="id"/>
+	</db-relationship>
+	<db-relationship name="tableField" source="rawtablefield" target="rawdatafields" toMany="false">
+		<db-attribute-pair source="rawdatafield" target="id"/>
+	</db-relationship>
+	<db-relationship name="rawTableMachine" source="rawtables" target="machine" toMany="true">
+		<db-attribute-pair source="id" target="rawtable"/>
+	</db-relationship>
+	<db-relationship name="tableField" source="rawtables" target="rawtablefield" toMany="true">
+		<db-attribute-pair source="id" target="rawtable"/>
+	</db-relationship>
+	<db-relationship name="line" source="scaling" target="scalingline" toMany="true">
+		<db-attribute-pair source="id" target="owner"/>
+	</db-relationship>
+	<db-relationship name="scalingAudit" source="scaling" target="auditscaling" toMany="true">
+		<db-attribute-pair source="id" target="whatchanged"/>
+	</db-relationship>
+	<db-relationship name="scalingRaw" source="scaling" target="scalingsubtype" toMany="true">
+		<db-attribute-pair source="id" target="scaling"/>
+	</db-relationship>
+	<db-relationship name="owned" source="scalingline" target="scaling" toMany="false">
+		<db-attribute-pair source="owner" target="id"/>
+	</db-relationship>
+	<db-relationship name="rawScaling" source="scalingsubtype" target="scaling" toMany="false">
+		<db-attribute-pair source="scaling" target="id"/>
+	</db-relationship>
+	<db-relationship name="rawSubtype" source="scalingsubtype" target="subtype" toMany="false">
+		<db-attribute-pair source="subtype" target="id"/>
+	</db-relationship>
+	<db-relationship name="owner" source="subtype" target="datatype" toMany="false">
+		<db-attribute-pair source="datatype" target="id"/>
+	</db-relationship>
+	<db-relationship name="subtypeField" source="subtype" target="rawtablefield" toMany="false">
+		<db-attribute-pair source="rawtabledatafield" target="id"/>
+	</db-relationship>
+	<db-relationship name="subtypeMachine" source="subtype" target="machine" toMany="false">
+		<db-attribute-pair source="machine" target="id"/>
+	</db-relationship>
+	<db-relationship name="subtypePlace" source="subtype" target="place" toMany="false">
+		<db-attribute-pair source="place" target="id"/>
+	</db-relationship>
+	<db-relationship name="subtypeScaling" source="subtype" target="scalingsubtype" toMany="true">
+		<db-attribute-pair source="id" target="subtype"/>
+	</db-relationship>
+	<db-relationship name="alertClosed" source="user" target="alert" toMany="true">
+		<db-attribute-pair source="id" target="closinguser"/>
+	</db-relationship>
+	<db-relationship name="changed" source="user" target="audit" toMany="true">
+		<db-attribute-pair source="id" target="whochanged"/>
+	</db-relationship>
+	<db-relationship name="userAlertMessage" source="user" target="alertmessage" toMany="true">
+		<db-attribute-pair source="id" target="user"/>
+	</db-relationship>
+	<db-relationship name="userGraph" source="user" target="graphconfig" toMany="false">
+		<db-attribute-pair source="dashboard" target="id"/>
+	</db-relationship>
+	<db-relationship name="useraudit" source="user" target="audituser" toMany="true">
+		<db-attribute-pair source="id" target="whatchanged"/>
+	</db-relationship>
+	<db-relationship name="usergroup" source="user" target="usergroup" toMany="true">
+		<db-attribute-pair source="id" target="user"/>
+	</db-relationship>
+	<db-relationship name="groupuser" source="usergroup" target="user" toMany="false">
+		<db-attribute-pair source="user" target="id"/>
+	</db-relationship>
+	<db-relationship name="usergroup" source="usergroup" target="groupofusers" toMany="false">
+		<db-attribute-pair source="groupofusers" target="id"/>
+	</db-relationship>
+	<obj-relationship name="alertEvent" source="Alert" target="Event" deleteRule="Nullify" db-relationship-path="alertEvent"/>
+	<obj-relationship name="alertMessage" source="Alert" target="AlertMessage" deleteRule="Cascade" db-relationship-path="alertMessage"/>
+	<obj-relationship name="alertaudit" source="Alert" target="AuditAlert" deleteRule="Cascade" db-relationship-path="alertaudit"/>
+	<obj-relationship name="closer" source="Alert" target="User" deleteRule="Nullify" db-relationship-path="closer"/>
+	<obj-relationship name="alertGroup" source="AlertMessage" target="GroupOfUsers" deleteRule="Nullify" db-relationship-path="alertGroup"/>
+	<obj-relationship name="alertUser" source="AlertMessage" target="User" deleteRule="Nullify" db-relationship-path="alertUser"/>
+	<obj-relationship name="messageAlert" source="AlertMessage" target="Alert" deleteRule="Nullify" db-relationship-path="messageAlert"/>
+	<obj-relationship name="conditionEvent" source="Assertion" target="Event" deleteRule="Nullify" db-relationship-path="assertionEvent"/>
+	<obj-relationship name="conditionPlace" source="Assertion" target="Place" deleteRule="Cascade" db-relationship-path="assertionPlace.assertionPlace"/>
+	<obj-relationship name="conditionType" source="Assertion" target="DataType" deleteRule="Nullify" db-relationship-path="assertionType"/>
+	<obj-relationship name="assertionPlace" source="AssertionPlace" target="Place" deleteRule="Nullify" db-relationship-path="assertionPlace"/>
+	<obj-relationship name="placeAssertion" source="AssertionPlace" target="Assertion" deleteRule="Nullify" db-relationship-path="placeAssertion"/>
+	<obj-relationship name="actor" source="Audit" target="User" deleteRule="Nullify" db-relationship-path="actor"/>
+	<obj-relationship name="auditalert" source="Audit" target="AuditAlert" deleteRule="Cascade" db-relationship-path="auditalert"/>
+	<obj-relationship name="auditevent" source="Audit" target="AuditEvent" deleteRule="Cascade" db-relationship-path="auditevent"/>
+	<obj-relationship name="auditgroup" source="Audit" target="AuditGroup" deleteRule="Cascade" db-relationship-path="auditgroup"/>
+	<obj-relationship name="auditmachine" source="Audit" target="AuditMachine" deleteRule="Cascade" db-relationship-path="auditmachine"/>
+	<obj-relationship name="auditmeasure" source="Audit" target="AuditMeasure" deleteRule="Cascade" db-relationship-path="auditmeasure"/>
+	<obj-relationship name="auditnetwork" source="Audit" target="AuditNetwork" deleteRule="Cascade" db-relationship-path="auditnetwork"/>
+	<obj-relationship name="auditscaling" source="Audit" target="AuditScaling" deleteRule="Cascade" db-relationship-path="auditscaling"/>
+	<obj-relationship name="audittype" source="Audit" target="AuditType" deleteRule="Cascade" db-relationship-path="audittype"/>
+	<obj-relationship name="audituser" source="Audit" target="AuditUser" deleteRule="Cascade" db-relationship-path="audituser"/>
+	<obj-relationship name="alertaudit" source="AuditAlert" target="Audit" deleteRule="Nullify" db-relationship-path="alertaudit"/>
+	<obj-relationship name="auditalert" source="AuditAlert" target="Alert" deleteRule="Nullify" db-relationship-path="auditalert"/>
+	<obj-relationship name="auditevent" source="AuditEvent" target="Event" deleteRule="Nullify" db-relationship-path="auditevent"/>
+	<obj-relationship name="eventaudit" source="AuditEvent" target="Audit" deleteRule="Nullify" db-relationship-path="eventaudit"/>
+	<obj-relationship name="auditgroup" source="AuditGroup" target="GroupOfUsers" deleteRule="Nullify" db-relationship-path="auditgroup"/>
+	<obj-relationship name="groupaudit" source="AuditGroup" target="Audit" deleteRule="Nullify" db-relationship-path="groupaudit"/>
+	<obj-relationship name="auditMachine" source="AuditMachine" target="Machine" deleteRule="Nullify" db-relationship-path="auditMachine"/>
+	<obj-relationship name="machineaudit" source="AuditMachine" target="Audit" deleteRule="Nullify" db-relationship-path="machineaudit"/>
+	<obj-relationship name="auditmeasure" source="AuditMeasure" target="Measure" deleteRule="Nullify" db-relationship-path="auditmeasure"/>
+	<obj-relationship name="measureaudit" source="AuditMeasure" target="Audit" deleteRule="Nullify" db-relationship-path="measureaudit"/>
+	<obj-relationship name="auditnetwork" source="AuditNetwork" target="Network" deleteRule="Nullify" db-relationship-path="auditnetwork"/>
+	<obj-relationship name="networkaudit" source="AuditNetwork" target="Audit" deleteRule="Nullify" db-relationship-path="networkaudit"/>
+	<obj-relationship name="auditScaling" source="AuditScaling" target="Scaling" deleteRule="Nullify" db-relationship-path="auditScaling"/>
+	<obj-relationship name="scalingaudit" source="AuditScaling" target="Audit" deleteRule="Nullify" db-relationship-path="scalingaudit"/>
+	<obj-relationship name="auditType" source="AuditType" target="DataType" deleteRule="Nullify" db-relationship-path="auditType"/>
+	<obj-relationship name="typeaudit" source="AuditType" target="Audit" deleteRule="Nullify" db-relationship-path="typeaudit"/>
+	<obj-relationship name="audituser" source="AuditUser" target="User" deleteRule="Nullify" db-relationship-path="audituser"/>
+	<obj-relationship name="useraudit" source="AuditUser" target="Audit" deleteRule="Nullify" db-relationship-path="useraudit"/>
+	<obj-relationship name="categ0" source="Category" target="DataType" deleteRule="Nullify" db-relationship-path="categ0"/>
+	<obj-relationship name="categ1" source="Category" target="DataType" deleteRule="Nullify" db-relationship-path="categ1"/>
+	<obj-relationship name="categ2" source="Category" target="DataType" deleteRule="Nullify" db-relationship-path="categ2"/>
+	<obj-relationship name="categ3" source="Category" target="DataType" deleteRule="Nullify" db-relationship-path="categ3"/>
+	<obj-relationship name="categ4" source="Category" target="DataType" deleteRule="Nullify" db-relationship-path="categ4"/>
+	<obj-relationship name="categ5" source="Category" target="DataType" deleteRule="Nullify" db-relationship-path="categ5"/>
+	<obj-relationship name="categ6" source="Category" target="DataType" deleteRule="Nullify" db-relationship-path="categ6"/>
+	<obj-relationship name="categ7" source="Category" target="DataType" deleteRule="Nullify" db-relationship-path="categ7"/>
+	<obj-relationship name="categ8" source="Category" target="DataType" deleteRule="Nullify" db-relationship-path="categ8"/>
+	<obj-relationship name="categ9" source="Category" target="DataType" deleteRule="Nullify" db-relationship-path="categ9"/>
+	<obj-relationship name="categoryMeasure" source="Category" target="Measure" deleteRule="Cascade" db-relationship-path="categoryMeasure"/>
+	<obj-relationship name="categoryname" source="Category" target="NameCategory" deleteRule="Cascade" db-relationship-path="categoryname"/>
+	<obj-relationship name="categ0" source="DataType" target="Category" deleteRule="Nullify" db-relationship-path="categ0"/>
+	<obj-relationship name="categ1" source="DataType" target="Category" deleteRule="Nullify" db-relationship-path="categ1"/>
+	<obj-relationship name="categ2" source="DataType" target="Category" deleteRule="Nullify" db-relationship-path="categ2"/>
+	<obj-relationship name="categ3" source="DataType" target="Category" deleteRule="Nullify" db-relationship-path="categ3"/>
+	<obj-relationship name="categ4" source="DataType" target="Category" deleteRule="Nullify" db-relationship-path="categ4"/>
+	<obj-relationship name="categ5" source="DataType" target="Category" deleteRule="Nullify" db-relationship-path="categ5"/>
+	<obj-relationship name="categ6" source="DataType" target="Category" deleteRule="Nullify" db-relationship-path="categ6"/>
+	<obj-relationship name="categ7" source="DataType" target="Category" deleteRule="Nullify" db-relationship-path="categ7"/>
+	<obj-relationship name="categ8" source="DataType" target="Category" deleteRule="Nullify" db-relationship-path="categ8"/>
+	<obj-relationship name="categ9" source="DataType" target="Category" deleteRule="Nullify" db-relationship-path="categ9"/>
+	<obj-relationship name="dataTypeField" source="DataType" target="RawDataFields" deleteRule="Deny" db-relationship-path="dataTypeField"/>
+	<obj-relationship name="datatypeImage" source="DataType" target="Imagetype" deleteRule="Cascade" db-relationship-path="datatypeImage"/>
+	<obj-relationship name="events" source="DataType" target="Event" deleteRule="Nullify" db-relationship-path="typeAssertion.assertionEvent"/>
+	<obj-relationship name="graphconfigs" source="DataType" target="Graphconfig" deleteRule="Deny" db-relationship-path="typeGraph.typeGraph"/>
+	<obj-relationship name="machines" source="DataType" target="Machine" deleteRule="Nullify" db-relationship-path="subtype.subtypeMachine"/>
+	<obj-relationship name="places" source="DataType" target="Place" deleteRule="Nullify" db-relationship-path="subtype.subtypePlace"/>
+	<obj-relationship name="scalings" source="DataType" target="Scaling" deleteRule="Nullify" db-relationship-path="subtype.subtypeScaling.rawScaling"/>
+	<obj-relationship name="singleBitMachines" source="DataType" target="Machine" deleteRule="Deny" db-relationship-path="dataTypeField.fieldTable.fieldTable.rawTableMachine"/>
+	<obj-relationship name="subtype" source="DataType" target="SubType" deleteRule="Cascade" db-relationship-path="subtype"/>
+	<obj-relationship name="typeAudit" source="DataType" target="AuditType" deleteRule="Cascade" db-relationship-path="typeAudit"/>
+	<obj-relationship name="typeCondition" source="DataType" target="Assertion" deleteRule="Deny" db-relationship-path="typeAssertion"/>
+	<obj-relationship name="typeGraph" source="DataType" target="GraphType" deleteRule="Cascade" db-relationship-path="typeGraph"/>
+	<obj-relationship name="typeMeasures" source="DataType" target="Measure" deleteRule="Cascade" db-relationship-path="typeMeasures"/>
+	<obj-relationship name="typeName" source="DataType" target="NameType" deleteRule="Cascade" db-relationship-path="typeName"/>
+	<obj-relationship name="deviceTypeMachine" source="Devicetype" target="Machine" deleteRule="Deny" db-relationship-path="deviceTypeMachine"/>
+	<obj-relationship name="datatypes" source="Event" target="DataType" deleteRule="Nullify" db-relationship-path="eventAssertion.assertionType"/>
+	<obj-relationship name="eventAlert" source="Event" target="Alert" deleteRule="Nullify" db-relationship-path="eventAlert"/>
+	<obj-relationship name="eventCondition" source="Event" target="Assertion" deleteRule="Cascade" db-relationship-path="eventAssertion"/>
+	<obj-relationship name="eventGroup" source="Event" target="GroupOfUsers" deleteRule="Nullify" db-relationship-path="eventGroup"/>
+	<obj-relationship name="eventName" source="Event" target="NameEvent" deleteRule="Cascade" db-relationship-path="eventName"/>
+	<obj-relationship name="eventaudit" source="Event" target="AuditEvent" deleteRule="Cascade" db-relationship-path="eventaudit"/>
+	<obj-relationship name="places" source="Event" target="Place" deleteRule="Deny" db-relationship-path="eventAssertion.assertionPlace.assertionPlace"/>
+	<obj-relationship name="graphType" source="GraphType" target="DataType" deleteRule="Nullify" db-relationship-path="graphType"/>
+	<obj-relationship name="typeGraph" source="GraphType" target="Graphconfig" deleteRule="Nullify" db-relationship-path="typeGraph"/>
+	<obj-relationship name="datatypes" source="Graphconfig" target="DataType" deleteRule="Deny" db-relationship-path="graphType.graphType"/>
+	<obj-relationship name="graphGroup" source="Graphconfig" target="GroupOfUsers" deleteRule="Deny" db-relationship-path="graphgroup"/>
+	<obj-relationship name="graphPlace" source="Graphconfig" target="Graphplace" deleteRule="Deny" db-relationship-path="graphPlace"/>
+	<obj-relationship name="graphType" source="Graphconfig" target="GraphType" deleteRule="Deny" db-relationship-path="graphType"/>
+	<obj-relationship name="graphUser" source="Graphconfig" target="User" deleteRule="Deny" db-relationship-path="graphUser"/>
+	<obj-relationship name="graphPlace" source="Graphplace" target="Place" deleteRule="Nullify" db-relationship-path="graphPlace"/>
+	<obj-relationship name="placeGraph" source="Graphplace" target="Graphconfig" deleteRule="Nullify" db-relationship-path="placeGraph"/>
+	<obj-relationship name="groupAlertMessage" source="GroupOfUsers" target="AlertMessage" deleteRule="Deny" db-relationship-path="groupAlertMessage"/>
+	<obj-relationship name="groupEvent" source="GroupOfUsers" target="Event" deleteRule="Deny" db-relationship-path="groupEvent"/>
+	<obj-relationship name="groupPermission" source="GroupOfUsers" target="Permission" deleteRule="Cascade" db-relationship-path="groupPermission"/>
+	<obj-relationship name="groupaudit" source="GroupOfUsers" target="AuditGroup" deleteRule="Cascade" db-relationship-path="groupaudit"/>
+	<obj-relationship name="groupgraph" source="GroupOfUsers" target="Graphconfig" deleteRule="Nullify" db-relationship-path="groupgraph"/>
+	<obj-relationship name="groupname" source="GroupOfUsers" target="NameGroup" deleteRule="Cascade" db-relationship-path="groupname"/>
+	<obj-relationship name="groupuser" source="GroupOfUsers" target="UserGroup" deleteRule="Cascade" db-relationship-path="groupuser"/>
+	<obj-relationship name="users" source="GroupOfUsers" target="User" deleteRule="Nullify" db-relationship-path="groupuser.groupuser"/>
+	<obj-relationship name="imageType" source="Imagemap" target="Imagetype" deleteRule="Cascade" db-relationship-path="imageType"/>
+	<obj-relationship name="imagename" source="Imagemap" target="NameImage" deleteRule="Cascade" db-relationship-path="imagename"/>
+	<obj-relationship name="mapPlace" source="Imagemap" target="Placemap" deleteRule="Cascade" db-relationship-path="mapplace"/>
+	<obj-relationship name="places" source="Imagemap" target="Place" deleteRule="Deny" db-relationship-path="mapplace.mapplace"/>
+	<obj-relationship name="datatypeImage" source="Imagetype" target="Imagemap" deleteRule="Nullify" db-relationship-path="datatypeImage"/>
+	<obj-relationship name="imageType" source="Imagetype" target="DataType" deleteRule="Nullify" db-relationship-path="imageType"/>
+	<obj-relationship name="assertions" source="Machine" target="Assertion" deleteRule="Deny" db-relationship-path="machineSubTypes.subtypePlace.placeAssertion.placeAssertion"/>
+	<obj-relationship name="datatypes" source="Machine" target="DataType" deleteRule="Nullify" db-relationship-path="machineSubTypes.owner"/>
+	<obj-relationship name="defaultdatatypes" source="Machine" target="DataType" deleteRule="Nullify" db-relationship-path="machineRawTable.tableField.tableField.fieldDataType"/>
+	<obj-relationship name="machineAudit" source="Machine" target="AuditMachine" deleteRule="Cascade" db-relationship-path="machineAudit"/>
+	<obj-relationship name="machineDeviceType" source="Machine" target="Devicetype" deleteRule="Nullify" db-relationship-path="machineDeviceType"/>
+	<obj-relationship name="machineGraph" source="Machine" target="Graphplace" deleteRule="Deny" db-relationship-path="machineGraph"/>
+	<obj-relationship name="machineNetwork" source="Machine" target="Network" deleteRule="Nullify" db-relationship-path="machineNetwork"/>
+	<obj-relationship name="machinePlace" source="Machine" target="Place" deleteRule="Deny" db-relationship-path="machinePlace"/>
+	<obj-relationship name="machineRawTable" source="Machine" target="RawTables" deleteRule="Nullify" db-relationship-path="machineRawTable"/>
+	<obj-relationship name="machineSubTypes" source="Machine" target="SubType" deleteRule="Deny" db-relationship-path="machineSubTypes"/>
+	<obj-relationship name="nameMachine" source="Machine" target="NameMachine" deleteRule="Cascade" db-relationship-path="machineName"/>
+	<obj-relationship name="places" source="Machine" target="Place" deleteRule="Nullify" db-relationship-path="machineSubTypes.subtypePlace"/>
+	<obj-relationship name="rawdatafields" source="Machine" target="RawDataFields" deleteRule="Nullify" db-relationship-path="machineRawTable.tableField.tableField"/>
+	<obj-relationship name="rawtablefields" source="Machine" target="RawTableField" deleteRule="Deny" db-relationship-path="machineRawTable.tableField"/>
+	<obj-relationship name="scalings" source="Machine" target="Scaling" deleteRule="Nullify" db-relationship-path="machineSubTypes.subtypeScaling.rawScaling"/>
+	<obj-relationship name="measureAudit" source="Measure" target="AuditMeasure" deleteRule="Cascade" db-relationship-path="measureAudit"/>
+	<obj-relationship name="measureCategory" source="Measure" target="Category" deleteRule="Nullify" db-relationship-path="measureCategory"/>
+	<obj-relationship name="measureField" source="Measure" target="RawTableField" deleteRule="Nullify" db-relationship-path="measureField"/>
+	<obj-relationship name="measureMachine" source="Measure" target="Machine" deleteRule="Nullify" db-relationship-path="measureMachine"/>
+	<obj-relationship name="measureName" source="Measure" target="NameMeasure" deleteRule="Cascade" db-relationship-path="measureName"/>
+	<obj-relationship name="measurePlace" source="Measure" target="Place" deleteRule="Nullify" db-relationship-path="measurePlace"/>
+	<obj-relationship name="measureType" source="Measure" target="DataType" deleteRule="Nullify" db-relationship-path="measureType"/>
+	<obj-relationship name="metaPermission" source="MetaClass" target="Permission" deleteRule="Cascade" db-relationship-path="metaPermission"/>
+	<obj-relationship name="namecategory" source="NameCategory" target="Category" deleteRule="Nullify" db-relationship-path="namecategory"/>
+	<obj-relationship name="nameEvent" source="NameEvent" target="Event" deleteRule="Nullify" db-relationship-path="nameEvent"/>
+	<obj-relationship name="namegroup" source="NameGroup" target="GroupOfUsers" deleteRule="Nullify" db-relationship-path="namegroup"/>
+	<obj-relationship name="nameImage" source="NameImage" target="Imagemap" deleteRule="Nullify" db-relationship-path="nameImage"/>
+	<obj-relationship name="nameMachine" source="NameMachine" target="Machine" deleteRule="Nullify" db-relationship-path="nameMachine"/>
+	<obj-relationship name="nameMeasure" source="NameMeasure" target="Measure" deleteRule="Nullify" db-relationship-path="nameMeasure"/>
+	<obj-relationship name="nameNetwork" source="NameNetwork" target="Network" deleteRule="Nullify" db-relationship-path="nameNetwork"/>
+	<obj-relationship name="namePlace" source="NamePlace" target="Place" deleteRule="Nullify" db-relationship-path="namePlace"/>
+	<obj-relationship name="nameType" source="NameType" target="DataType" deleteRule="Nullify" db-relationship-path="nameType"/>
+	<obj-relationship name="networkMachine" source="Network" target="Machine" deleteRule="Nullify" db-relationship-path="networkMachine"/>
+	<obj-relationship name="networkName" source="Network" target="NameNetwork" deleteRule="Cascade" db-relationship-path="networkName"/>
+	<obj-relationship name="networkaudit" source="Network" target="AuditNetwork" deleteRule="Cascade" db-relationship-path="networkaudit"/>
+	<obj-relationship name="permissionGroup" source="Permission" target="GroupOfUsers" deleteRule="Nullify" db-relationship-path="permissionGroup"/>
+	<obj-relationship name="permissionMeta" source="Permission" target="MetaClass" deleteRule="Nullify" db-relationship-path="permissionMeta"/>
+	<obj-relationship name="assertions" source="Place" target="Assertion" deleteRule="Deny" db-relationship-path="placeAssertion.placeAssertion"/>
+	<obj-relationship name="graphconfigs" source="Place" target="Graphconfig" deleteRule="Deny" db-relationship-path="placeGraph.placeGraph"/>
+	<obj-relationship name="imagemaps" source="Place" target="Imagemap" deleteRule="Deny" db-relationship-path="placemap.placemap"/>
+	<obj-relationship name="machines" source="Place" target="Machine" deleteRule="Nullify" db-relationship-path="placesubtype.subtypeMachine"/>
+	<obj-relationship name="placeGraph" source="Place" target="Graphplace" deleteRule="Deny" db-relationship-path="placeGraph"/>
+	<obj-relationship name="placeMap" source="Place" target="Placemap" deleteRule="Cascade" db-relationship-path="placemap"/>
+	<obj-relationship name="placeMeasure" source="Place" target="Measure" deleteRule="Cascade" db-relationship-path="placeMeasure"/>
+	<obj-relationship name="placemachine" source="Place" target="Machine" deleteRule="Nullify" db-relationship-path="placemachine"/>
+	<obj-relationship name="placename" source="Place" target="NamePlace" deleteRule="Cascade" db-relationship-path="placename"/>
+	<obj-relationship name="placesubtype" source="Place" target="SubType" deleteRule="Deny" db-relationship-path="placesubtype"/>
+	<obj-relationship name="mapplace" source="Placemap" target="Place" deleteRule="Nullify" db-relationship-path="mapplace"/>
+	<obj-relationship name="placemap" source="Placemap" target="Imagemap" deleteRule="Nullify" db-relationship-path="placemap"/>
+	<obj-relationship name="fieldDataType" source="RawDataFields" target="DataType" deleteRule="Nullify" db-relationship-path="fieldDataType"/>
+	<obj-relationship name="fieldTable" source="RawDataFields" target="RawTableField" deleteRule="Cascade" db-relationship-path="fieldTable"/>
+	<obj-relationship name="tables" source="RawDataFields" target="RawTables" deleteRule="Nullify" db-relationship-path="fieldTable.fieldTable"/>
+	<obj-relationship name="fieldMeasure" source="RawTableField" target="Measure" deleteRule="Nullify" db-relationship-path="fieldMeasure"/>
+	<obj-relationship name="fieldSubtype" source="RawTableField" target="SubType" deleteRule="Nullify" db-relationship-path="fieldSubtype"/>
+	<obj-relationship name="fieldTable" source="RawTableField" target="RawTables" deleteRule="Nullify" db-relationship-path="fieldTable"/>
+	<obj-relationship name="tableField" source="RawTableField" target="RawDataFields" deleteRule="Nullify" db-relationship-path="tableField"/>
+	<obj-relationship name="fields" source="RawTables" target="RawDataFields" deleteRule="Nullify" db-relationship-path="tableField.tableField"/>
+	<obj-relationship name="rawTableMachine" source="RawTables" target="Machine" deleteRule="Deny" db-relationship-path="rawTableMachine"/>
+	<obj-relationship name="tableField" source="RawTables" target="RawTableField" deleteRule="Cascade" db-relationship-path="tableField"/>
+	<obj-relationship name="datatypes" source="Scaling" target="DataType" deleteRule="Nullify" db-relationship-path="scalingRaw.rawSubtype.owner"/>
+	<obj-relationship name="line" source="Scaling" target="ScalingLine" deleteRule="Cascade" db-relationship-path="line"/>
+	<obj-relationship name="machines" source="Scaling" target="Machine" deleteRule="Nullify" db-relationship-path="scalingRaw.rawSubtype.subtypeMachine"/>
+	<obj-relationship name="scalingAudit" source="Scaling" target="AuditScaling" deleteRule="Cascade" db-relationship-path="scalingAudit"/>
+	<obj-relationship name="scalingRaw" source="Scaling" target="ScalingSubType" deleteRule="Cascade" db-relationship-path="scalingRaw"/>
+	<obj-relationship name="subtypes" source="Scaling" target="SubType" deleteRule="Nullify" db-relationship-path="scalingRaw.rawSubtype"/>
+	<obj-relationship name="owner" source="ScalingLine" target="Scaling" deleteRule="Nullify" db-relationship-path="owned"/>
+	<obj-relationship name="rawScaling" source="ScalingSubType" target="Scaling" deleteRule="Nullify" db-relationship-path="rawScaling"/>
+	<obj-relationship name="rawSubtype" source="ScalingSubType" target="SubType" deleteRule="Nullify" db-relationship-path="rawSubtype"/>
+	<obj-relationship name="owner" source="SubType" target="DataType" deleteRule="Nullify" db-relationship-path="owner"/>
+	<obj-relationship name="scalings" source="SubType" target="Scaling" deleteRule="Nullify" db-relationship-path="subtypeScaling.rawScaling"/>
+	<obj-relationship name="subtypeField" source="SubType" target="RawTableField" deleteRule="Nullify" db-relationship-path="subtypeField"/>
+	<obj-relationship name="subtypeMachine" source="SubType" target="Machine" deleteRule="Nullify" db-relationship-path="subtypeMachine"/>
+	<obj-relationship name="subtypePlace" source="SubType" target="Place" deleteRule="Nullify" db-relationship-path="subtypePlace"/>
+	<obj-relationship name="subtypeScaling" source="SubType" target="ScalingSubType" deleteRule="Deny" db-relationship-path="subtypeScaling"/>
+	<obj-relationship name="alertClosed" source="User" target="Alert" deleteRule="Nullify" db-relationship-path="alertClosed"/>
+	<obj-relationship name="changed" source="User" target="Audit" deleteRule="Cascade" db-relationship-path="changed"/>
+	<obj-relationship name="groups" source="User" target="GroupOfUsers" deleteRule="Nullify" db-relationship-path="usergroup.usergroup"/>
+	<obj-relationship name="groupsmessages" source="User" target="AlertMessage" deleteRule="Nullify" db-relationship-path="usergroup.usergroup.groupAlertMessage"/>
+	<obj-relationship name="userAlertMessage" source="User" target="AlertMessage" deleteRule="Deny" db-relationship-path="userAlertMessage"/>
+	<obj-relationship name="userGraph" source="User" target="Graphconfig" deleteRule="Nullify" db-relationship-path="userGraph"/>
+	<obj-relationship name="useraudit" source="User" target="AuditUser" deleteRule="Cascade" db-relationship-path="useraudit"/>
+	<obj-relationship name="usergroup" source="User" target="UserGroup" deleteRule="Cascade" db-relationship-path="usergroup"/>
+	<obj-relationship name="groupuser" source="UserGroup" target="User" deleteRule="Nullify" db-relationship-path="groupuser"/>
+	<obj-relationship name="usergroup" source="UserGroup" target="GroupOfUsers" deleteRule="Nullify" db-relationship-path="usergroup"/>
+	<query name="LastAlerts" factory="org.apache.cayenne.map.SQLTemplateBuilder" root="obj-entity" root-name="Measure">
+		<property name="cayenne.GenericSelectQuery.fetchLimit" value="20"/>
+		<sql><![CDATA[select measure.id
+   from measure, rule
+   where (rule.machine=measure.machine) AND (rule.type=measure.type)
+         AND ((measure.value < rule.min) OR (measure.value > rule.max))
+   order by measure.whenmeasured DESC]]></sql>
+	</query>
+	<query name="lastMeasures" factory="org.apache.cayenne.map.SelectQueryBuilder" root="obj-entity" root-name="Measure">
+		<property name="cayenne.GenericSelectQuery.pageSize" value="20"/>
+		<ordering descending="true"><![CDATA[whenmeasured]]></ordering>
+	</query>
+	<query name="measureForMachineDate" factory="org.apache.cayenne.map.SQLTemplateBuilder" root="obj-entity" root-name="Measure">
+		<property name="cayenne.GenericSelectQuery.fetchLimit" value="1"/>
+		<sql><![CDATA[select measure.id
+   from measure
+   where ($machinekey=measure.machine) AND ($timestamp=measure.whenmeasured)]]></sql>
+	</query>
+</data-map>

@@ -1,0 +1,112 @@
+digraph G {
+label="Modèle de données AKUINO";
+node [fontname="Arial" shape=record style=filled fillcolor=white];
+fontname="Arial";
+subgraph cluster_Main{
+label="";
+bgcolor=cadetblue1;
+  alert[label="{alert:|{id*|audit,comments}|in event|<user>1 closing user}" fillcolor=orange];
+	alertMessage[label="{alertMessage:|{id*||}|in alert|{sent time|via}|received time|<user>1 groupofusers or 1 user}" fillcolor=orange];
+/*
+	audit[label="{audit:|id*|via|whenchanged|whochanged|whychanged}" fillcolor=cornsilk3];
+	auditalert[label="{auditalert:|audit|id*|whatchanged}" fillcolor=cornsilk3];
+	auditgraf[label="{auditgraf:|audit|id*|whatchanged}" fillcolor=cornsilk3];
+	auditgroup[label="{auditgroup:|audit|id*|whatchanged}" fillcolor=cornsilk3];
+	auditmachine[label="{auditmachine:|audit|id*|whatchanged}" fillcolor=cornsilk3];
+	auditnetwork[label="{auditnetwork:|audit|id*|whatchanged}" fillcolor=cornsilk3];
+	auditscaling[label="{auditscaling:|audit|id*|whatchanged}" fillcolor=cornsilk3];
+	audittype[label="{audittype:|audit|id*|whatchanged}" fillcolor=cornsilk3];
+	audituser[label="{audituser:|audit|id*|whatchanged}" fillcolor=cornsilk3];
+	auditmeasure to track manual setting changes
+*/
+	datatype[label="{datatype:|{id*|names|audit}|active?|default timespan|description|unit|symbol|#categories:|{{min|color0}|{min1|color1}|{min2|color2}|{min3|color3}|{min4|color4}}|{{min5|color5}|{min6|color6}|{min7|color7}|{min8|color8}|{min9|color9}}|max}" fillcolor=palegoldenrod];
+	event[label="{event:|{id*|names|audit}|active?|{since|upto}|for groupofusers|hysteresis sec.|priority 1-3}" fillcolor=palegoldenrod];
+	graf[label="{graf:|{id*|names|audit}|timeslice|individualMachine?|individualType?}" fillcolor=palegreen];
+	groupofusers[label="{groupofusers:|{id*|names|audit}|active?|email|gsm}" fillcolor=palegreen];
+	machine[label="{machine:|{id*|names|audit}|in network|deviceType+machineId|active?|description|gsm|{long.|lat.}|nodeId|symbol|color}" fillcolor=palegoldenrod];
+	measure[label="{measure:|{id*|names|audit}|from rawrecord+rawtablefield|for machine|for datatype|value from scaling|category 0-9|whenmeasured}" fillcolor=orange];
+	measure -> rawtablefield
+/*
+	nameevent[label="{nameevent:|id*|language|name|owner|since}" fillcolor=darkolivegreen1];
+	namegraf[label="{namegraf:|id*|language|name|owner|since}" fillcolor=darkolivegreen1];
+	namegroup[label="{namegroup:|id*|language|name|owner|since}" fillcolor=darkolivegreen1];
+	namemachine[label="{namemachine:|id*|language|name|owner|since}" fillcolor=darkolivegreen1];
+	namemeasure[label="{namemeasure:|id*|language|name|owner|since}" fillcolor=darkolivegreen1];
+	namenetwork[label="{namenetwork:|id*|language|name|owner|since}" fillcolor=darkolivegreen1];
+	nametype[label="{nametype:|id*|language|name|owner|since}" fillcolor=darkolivegreen1];
+*/
+	network[label="{network:|{id*|names|audit}|basetempo|beatgsm|beatmeasure|{warmup|timeslice|sleeptime}}" fillcolor=hotpink];
+	rawtables[label="{rawtables:|{id*| | }|description}" fillcolor=lightgrey];
+	rawdatafields[label="{rawdatafields:|{id*| | }|description|inheader?|fieldbits}" fillcolor=lightgrey];
+	rawtablefield[label="{rawtablefield:|{id*| | }|in rawtable|for rawdatafield}" fillcolor=lightgrey];
+	rawtables->rawtablefield;
+	rawdatafields->rawtablefield;
+	rawdata17[label="{rawdata17:  id* |{aa_xbeeaddr|ab_structId|ac_timevalidity|ad_cpumac}|{ae_timestamp|af_slot|ag_family}|{ah_sentlan|ai_sendingwan|aj_relayedgo|ak_relayedreturn}|{ba_usbnotconnect|bb_solarpanelok|bc_powerfilterok}|{bd_voltsbattok|be_lipochargingok|bf_lipocharging}|{bg_xbeeon|bh_xbeeassoc|bi_gsmon|bj_gsmlast_ok}|{bk_gsmlastretries|bl_xbeerssi|bm_gsmrssi|bn_gsmber}|{bo_channel1ok|bp_channel2ok|bq_led1}|{br_dooralwaysclosed|bs_ledalwaysoff}|{ca_waterlevel|cb_temperature|cc_amp5v|cd_voltsbatt|ce_voltssol}}" fillcolor=orange];
+	scaling[label="{scaling:|{id*||audit}|description|unit|interpolation}" fillcolor=hotpink];
+	scalingline[label="{scalingline:|{id*||}|in scaling|{rawmin|rawmax}|{min|max}}" fillcolor=hotpink];
+	subtype[label="{subtype:|{id*||}|in datatype|for machine|for rawtablefield|active?|{min|min1|min2|min3|min4}|{min5|min6|min7|min8|min9}|max}" fillcolor=palegoldenrod];
+	assertion[label="{assertion:|{id*||}|in event|for datatype|category mask|impose}" fillcolor=palegoldenrod];
+	user[label="{user:|{id*|name|audit}|active?|admin?|{email|gsm}|language|password|{sleepbegin/end}|1 dashboard graf}" fillcolor=palegreen];
+	usergroup[label="{usergroup:|{id*||}|in groupofusers|for user|{since|upto}}" fillcolor=palegreen];
+scalingsubtype[label="{scalingsubtype:|{id*||}|in scaling|for subtype|{since|upto}}" fillcolor=hotpink];
+assertionmachine[label="{assertionmachine:|{id*||}|in assertion|for machine|{since|upto}}" fillcolor=palegoldenrod];
+//alert -> auditalert[weight=2]; //source="id" target="whatchanged"
+alert:user -> user; //source="closinguser" target="id"
+alert -> alertMessage;
+event -> alert;
+/*
+auditalert -> audit; //source="audit" target="id"
+auditgraf -> audit; //source="audit" target="id"
+auditgroup -> audit; //source="audit" target="id"
+auditmachine -> audit; //source="audit" target="id"
+auditnetwork -> audit; //source="audit" target="id"
+auditscaling -> audit; //source="audit" target="id"
+audittype -> audit; //source="audit" target="id"
+audituser -> audit; //source="audit" target="id"
+*/
+datatype -> subtype; //source="id" target="datatype"
+//datatype -> audittype[weight=2]; //source="id" target="whatchanged"
+datatype -> measure; //source="id" target="datatype"
+//datatype -> nametype[weight=3]; //source="id" target="owner"
+event -> assertion;
+//event -> nameevent[weight=3]; //source="id" target="owner"
+//graf -> namegraf[weight=3]; //source="id" target="owner"
+//graf -> auditgraf[weight=2]; //source="id" target="owner"
+user -> graf;
+//groupofusers -> auditgroup[weight=2]; //source="id" target="whatchanged"
+//groupofusers -> namegroup[weight=3]; //source="id" target="owner"
+//machine -> auditmachine[weight=2]; //source="id" target="whatchanged"
+machine -> measure; //source="id" target="machine"
+//machine -> namemachine[weight=3]; //source="id" target="owner"
+machine -> subtype; //source="id" target="machine"
+//measure -> namemeasure[weight=3]; //source="id" target="owner"
+//network -> namenetwork[weight=3]; //source="id" target="owner"
+//network -> auditnetwork[weight=2]; //source="id" target="whatchanged"
+network -> machine; //source="id" target="owner"
+subtype -> scalingsubtype;
+scaling -> scalingsubtype;
+scaling -> scalingline; //source="id" target="owner"
+//scaling -> auditscaling; //source="id" target="whatchanged"
+//user -> audit; //source="id" target="whochanged"
+//user -> audituser[weight=2]; //source="id" target="whatchanged"
+user -> usergroup;
+alertMessage:user -> user;
+groupofusers -> usergroup;
+groupofusers -> event;
+alertMessage:user->groupofusers;
+datatype->assertion;
+assertion -> assertionmachine;
+machine->assertionmachine;
+assertion->measure[style=dotted];
+rawdata17->measure;
+rawdata17->rawtables[style=dotted];
+rawdata17->rawdatafields[style=dotted];
+graftype[label="{graftype:|{id*||}|in graf|for datatype}" fillcolor=palegreen];
+subtype->rawtablefield;
+grafmachine[label="{grafmachine:|{id*||}|in graf|for machine}" fillcolor=palegreen];
+graf -> grafmachine;
+graf -> graftype;
+datatype->graftype;
+machine->grafmachine;
+}
+}
